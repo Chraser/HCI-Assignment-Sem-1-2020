@@ -42,8 +42,7 @@ public class StartMenuController implements Initializable {
     @FXML
     private void handleOkButtonAction(ActionEvent event) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MainMultiplexer.fxml"));
-        AnchorPane root = (AnchorPane) loader.load();
-        
+        AnchorPane root = (AnchorPane) loader.load();        
         Scene scene = new Scene(root);
         Stage stage = HCI_MKVToolNix.getStage();
         stage.setTitle("MKVToolNix GUI Main Menu");
