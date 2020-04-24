@@ -29,10 +29,7 @@ import javafx.util.Callback;
  * @author Chraser
  */
 public class StartMenuController implements Initializable {
-    
-    @FXML
-    private Label label;
-    
+        
     @FXML
     private ComboBox comboBox;
     
@@ -44,8 +41,6 @@ public class StartMenuController implements Initializable {
     
     @FXML
     private void handleOkButtonAction(ActionEvent event) throws Exception {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MainMultiplexer.fxml"));
         AnchorPane root = (AnchorPane) loader.load();
         
