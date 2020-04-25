@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hci_mkvtoolnix.MainWindowController">
+   <children>
+      <Label layoutX="235.0" layoutY="746.0" text="Jobs to execute: 0 completed, 0 manual, 0 running" />
+      <Label layoutX="646.0" layoutY="746.0" prefHeight="20.0" text="0 warnings" />
+      <Label layoutX="768.0" layoutY="746.0" text="0 errors" />
+      <Pane fx:id="toolPane" layoutX="188.0" layoutY="52.0" prefHeight="664.0" prefWidth="1171.0" />
+      <GridPane layoutX="14.0" layoutY="53.0" prefHeight="643.0" prefWidth="200.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+      </GridPane>
+      <MenuBar fx:id="menuBar" layoutX="-1.0" layoutY="1.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Menu">
+              <items>
+              <MenuItem mnemonicParsing="false" onAction="#openPreference" text="Preference" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Multiplexer">
+            <items>
+              <MenuItem mnemonicParsing="false" text="New" />
+              <MenuItem mnemonicParsing="false" text="Open Settings" />
+              <MenuItem mnemonicParsing="false" text="Save Settings" />
+              <MenuItem mnemonicParsing="false" text="Save Settings as" />
+              <MenuItem mnemonicParsing="false" text="Create option file" />
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Window">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Next multiplex settings" />
+              <MenuItem mnemonicParsing="false" text="Previous multiplex settings" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="mkvmerge documentation" />
+              <MenuItem mnemonicParsing="false" text="User forum/sub-Reddit" />
+              <MenuItem mnemonicParsing="false" text="FAQ" />
+              <MenuItem mnemonicParsing="false" text="Known problems in recent releases" />
+              <MenuItem mnemonicParsing="false" text="Report a bug" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </children>
+</AnchorPane>
