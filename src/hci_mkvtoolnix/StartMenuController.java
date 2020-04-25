@@ -5,8 +5,14 @@
  */
 package hci_mkvtoolnix;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,6 +29,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import javafx.stage.FileChooser;
 
 /**
  *
@@ -40,9 +47,21 @@ public class StartMenuController implements Initializable {
     private Button cancelButton;
     
     @FXML
-    private void handleOkButtonAction(ActionEvent event) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("MainMultiplexer.fxml"));
-        AnchorPane root = (AnchorPane) loader.load();        
+    private ListView listView;
+    
+    private List<File> fileList = new ArrayList<>();
+    
+    private ObservableList fileNames = FXCollections.observableArrayList();
+    
+    @FXML
+    private void handleOkButtonAction(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(HCI_MKVToolNix.class.getResource("MainWindow.fxml"));
+        AnchorPane root = (AnchorPane) loader.load();
+        
+        //gets the main window controller to send the file list to multiplexer controller
+        MainWindowController nextController = loader.getController();
+        nextController.setFileList(fileList);
+        
         Scene scene = new Scene(root);
         Stage stage = HCI_MKVToolNix.getStage();
         stage.setTitle("MKVToolNix GUI Main Menu");
@@ -52,8 +71,26 @@ public class StartMenuController implements Initializable {
     }
     
     @FXML
-    private void handleCancelButtonAction(ActionEvent event) throws Exception {
+    private void handleCancelButtonAction(ActionEvent event){
         System.exit(0);
+    }
+    
+    @FXML
+    private void handleOpenFile() throws Exception {
+        Stage stage = HCI_MKVToolNix.getStage();
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open File");
+        List<File> temp = fileChooser.showOpenMultipleDialog(stage);
+        fileList.addAll(temp);
+        for(File file : fileList)
+        {
+            System.out.println(file.getName());
+            fileNames.add(file.getName());
+        }
+        if(fileNames != null)
+        {
+            listView.setItems(fileNames);
+        }
     }
     
     @Override

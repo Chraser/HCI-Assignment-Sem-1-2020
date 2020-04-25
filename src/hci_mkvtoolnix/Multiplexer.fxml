@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<fx:root id="AnchorPane" prefHeight="664.0" prefWidth="1171.0" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+       <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="403.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+             <Image url="@../icons/minus-icon.png" />
+          </image>
+       </ImageView>
+       <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="333.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+             <Image url="@../icons/plus-icon.png" />
+          </image>
+       </ImageView>
+       <ComboBox fx:id="projectList" layoutX="39.0" layoutY="17.0" prefWidth="150.0" />
+       <AnchorPane layoutX="-1.0" layoutY="94.0" prefHeight="503.0" prefWidth="1140.0">
+          <children>
+             <Label layoutX="6.0" layoutY="261.0" text="Tracks, chapters and tags:" />
+             <TableView layoutY="29.0" prefHeight="200.0" prefWidth="569.0">
+                <columns>
+                   <TableColumn prefWidth="106.0" text="File Name" />
+                   <TableColumn prefWidth="98.0" text="File Type" />
+                   <TableColumn prefWidth="71.0" text="File Size" />
+                   <TableColumn prefWidth="198.0" text="Directory" />
+                </columns>
+             </TableView>
+             <Label layoutX="6.0" layoutY="6.0" text="Source files:" />
+             <TableView layoutX="6.0" layoutY="286.0" prefHeight="200.0" prefWidth="474.0">
+               <columns>
+                 <TableColumn prefWidth="106.0" text="Codec" />
+                 <TableColumn prefWidth="98.0" text="Type" />
+                 <TableColumn prefWidth="71.0" text="Copy Item" />
+                 <TableColumn prefWidth="198.0" text="Language" />
+                 <TableColumn prefWidth="198.0" text="Name" />
+               </columns>
+             </TableView>
+             <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="585.0" layoutY="104.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                   <Image url="@../icons/minus-icon.png" />
+                </image>
+             </ImageView>
+             <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="585.0" layoutY="37.0" onMouseClicked="#addSourceFiles" pickOnBounds="true" preserveRatio="true">
+                <image>
+                   <Image url="@../icons/document-open.png" />
+                </image>
+             </ImageView>
+          </children>
+        </AnchorPane>
+      <Label layoutX="216.0" layoutY="630.0" text="Destination File:" />
+      <ListView layoutX="317.0" layoutY="623.0" prefHeight="30.0" prefWidth="569.0" />
+      <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="901.0" layoutY="626.0" onMouseClicked="#selectDestinationFile" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icons/document-open.png" />
+         </image>
+      </ImageView>
+    </children>
+</fx:root>

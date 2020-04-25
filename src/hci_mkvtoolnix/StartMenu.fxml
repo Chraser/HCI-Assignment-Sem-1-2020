@@ -34,13 +34,13 @@
             <Font size="18.0" />
          </font>
       </CheckBox>
-      <ListView layoutX="81.0" layoutY="384.0" prefHeight="251.0" prefWidth="794.0" />
+      <ListView fx:id="listView" layoutX="81.0" layoutY="384.0" prefHeight="251.0" prefWidth="794.0" />
       <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="890.0" layoutY="384.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../icons/minus-icon.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="890.0" layoutY="603.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="890.0" layoutY="603.0" onMouseClicked="#handleOpenFile" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../icons/document-open.png" />
          </image>

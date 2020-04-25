@@ -14,7 +14,7 @@ import javafx.fxml.Initializable;
  *
  * @author Chraser
  */
-public class MainMultiplexerController implements Initializable {
+public class PreferenceController implements Initializable {
 
     /**
      * Initializes the controller class.

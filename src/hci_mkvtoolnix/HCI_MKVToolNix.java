@@ -6,6 +6,9 @@
 package hci_mkvtoolnix;
 
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -38,7 +41,20 @@ public class HCI_MKVToolNix extends Application {
     {
         return primaryStage;
     }
+    
+    @FXML
+    public void exitApplication(ActionEvent event) {
+       Platform.exit();
+       System.out.println("am closing");
+    }
 
+    
+    @Override
+    public void stop(){
+        System.out.println("Stage is closing");
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
