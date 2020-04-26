@@ -21,21 +21,29 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 /**
- * FXML Controller class
+ * FXML Custom Controller class
  *
- * @author Chraser
+ * @author Kay Men Yap
+ * @student_number 19257442
  */
 public class MultiplexerController extends AnchorPane {
 
+    //also known as the multiplex setting list
     @FXML
     private ComboBox projectList;
     
-    private List<File> fileList = new ArrayList<>();
+    @FXML
+    private Pane pane;
     
-    private ObservableList fileNames = FXCollections.observableArrayList();
+    private InputController inputController;
+    
+    private Pane outputPane;
+    
+    private Pane attachmentPane;
     
     public MultiplexerController()
     {
@@ -45,52 +53,58 @@ public class MultiplexerController extends AnchorPane {
         try
         {
             loader.load();
+            
+            //load the output pane and attachment pane into memory
+            loader = new FXMLLoader(HCI_MKVToolNix.class.getResource("Output.fxml"));
+            outputPane = (Pane) loader.load();
+            loader = new FXMLLoader(HCI_MKVToolNix.class.getResource("Attachment.fxml"));
+            attachmentPane = (Pane) loader.load();
         }
         catch(IOException e)
         {
             throw new RuntimeException(e);
         }
+        inputController = new InputController();
+        pane.getChildren().add(inputController);
+        
+        projectList.getItems().addAll("Project1.mp4", "Project2.mp4", "Project3.mkv");
+        projectList.getSelectionModel().selectFirst();
+        
     }
     
-    //gets file list from start menu through the main window contrller
+    //gets file list from start menu through the main window contrller to the input controller
     public void setFileList(List<File> fileList)
     {
-        this.fileList = fileList;
-        System.out.println("file obtained");
+        inputController.setFileList(fileList);
     }
     
     @FXML
-    private void addSourceFiles()throws IOException {
-        /*Stage stage = HCI_MKVToolNix.getStage();
+    private void selectDestinationFile()throws IOException 
+    {
+        Stage stage = HCI_MKVToolNix.getStage();
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open File");
-        List<File> fileList = fileChooser.showOpenMultipleDialog(stage);
-        for(File file : fileList)
-        {
-            System.out.println(file.getName());
-            fileNames.add(file.getName());
-        }
-        if(fileNames != null)
-        {
-            listView.setItems(fileNames);
-        }*/
+        fileChooser.showOpenDialog(stage);
     }
     
     @FXML
-    private void selectDestinationFile()throws IOException {
-        /*Stage stage = HCI_MKVToolNix.getStage();
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Open File");
-        List<File> fileList = fileChooser.showOpenMultipleDialog(stage);
-        for(File file : fileList)
-        {
-            System.out.println(file.getName());
-            fileNames.add(file.getName());
-        }
-        if(fileNames != null)
-        {
-            listView.setItems(fileNames);
-        }*/
+    private void handleInputClick()
+    {
+        pane.getChildren().clear();
+        pane.getChildren().add(inputController);
     }
     
+    @FXML
+    private void handleOutputClick()
+    {
+        pane.getChildren().clear();
+        pane.getChildren().add(outputPane);
+    }
+    
+    @FXML
+    private void handleAttachmentClick()
+    {
+        pane.getChildren().clear();
+        pane.getChildren().add(attachmentPane);
+    }
 }
