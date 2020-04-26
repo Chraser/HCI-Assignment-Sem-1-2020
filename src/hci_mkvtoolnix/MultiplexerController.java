@@ -80,7 +80,7 @@ public class MultiplexerController extends AnchorPane {
     }
     
     @FXML
-    private void selectDestinationFile()throws IOException 
+    private void selectDestinationFile()
     {
         Stage stage = HCI_MKVToolNix.getStage();
         FileChooser fileChooser = new FileChooser();
