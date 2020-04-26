@@ -64,6 +64,7 @@ public class MultiplexerController extends AnchorPane {
         {
             throw new RuntimeException(e);
         }
+        //instanties the input controller and add the input fxml into the pane
         inputController = new InputController();
         pane.getChildren().add(inputController);
         
