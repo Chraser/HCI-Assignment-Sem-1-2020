@@ -25,7 +25,7 @@
          </font>
       </Label>
       <Button fx:id="cancelButton" layoutX="1242.0" layoutY="707.0" mnemonicParsing="false" onAction="#handleCancelButtonAction" prefHeight="40.0" prefWidth="64.0" text="Cancel" />
-      <Label layoutX="81.0" layoutY="331.0" text="If you selected any tool that isn't job queue or job output, you can add source file(s) here before going to the tool selected.">
+      <Label layoutX="81.0" layoutY="299.0" text="If you selected any tool that isn't job queue or job output, you can add source file(s) here before going to the tool selected.">
          <font>
             <Font size="20.0" />
          </font></Label>
@@ -34,16 +34,24 @@
             <Font size="18.0" />
          </font>
       </CheckBox>
-      <ListView fx:id="listView" layoutX="81.0" layoutY="384.0" prefHeight="251.0" prefWidth="794.0" />
-      <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="890.0" layoutY="384.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../icons/minus-icon.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="890.0" layoutY="603.0" onMouseClicked="#handleOpenFile" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../icons/document-open.png" />
-         </image>
-      </ImageView>
+      <ListView fx:id="listView" layoutX="81.0" layoutY="360.0" prefHeight="251.0" prefWidth="794.0" />
+      <Button layoutX="889.0" layoutY="575.0" mnemonicParsing="false" onAction="#handleOpenFile">
+         <graphic>
+            <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icons/document-open.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button layoutX="889.0" layoutY="360.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0">
+         <graphic>
+            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icons/minus-icon.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
     </children>
 </AnchorPane>
