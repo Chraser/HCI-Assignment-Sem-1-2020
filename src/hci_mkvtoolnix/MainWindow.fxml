@@ -12,12 +12,13 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hci_mkvtoolnix.MainWindowController">
    <children>
-      <Label layoutX="235.0" layoutY="746.0" text="Jobs to execute: 0 completed, 0 manual, 0 running" />
-      <Label layoutX="646.0" layoutY="746.0" prefHeight="20.0" text="0 warnings">
+      <Label layoutX="235.0" layoutY="746.0" text="Jobs to execute: 0 completed, 0 manual, 0 running" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="235.0" />
+      <Label layoutX="646.0" layoutY="746.0" prefHeight="20.0" text="0 warnings" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="650.0">
          <graphic>
             <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -25,7 +26,7 @@
                </image>
             </ImageView>
          </graphic></Label>
-      <Label layoutX="768.0" layoutY="746.0" text="0 errors">
+      <Label layoutX="768.0" layoutY="746.0" text="0 errors" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="750.0">
          <graphic>
             <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -33,8 +34,8 @@
                </image>
             </ImageView>
          </graphic></Label>
-      <Pane fx:id="toolPane" layoutX="195.0" layoutY="31.0" prefHeight="702.0" prefWidth="1170.0" />
-      <GridPane layoutY="24.0" prefHeight="671.0" prefWidth="183.0" AnchorPane.leftAnchor="0.0">
+      <Pane fx:id="toolPane" layoutX="195.0" layoutY="31.0" prefHeight="702.0" prefWidth="1170.0" AnchorPane.leftAnchor="195.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="31.0" />
+      <GridPane layoutY="24.0" prefHeight="671.0" prefWidth="183.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="24.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
@@ -179,5 +180,10 @@
           </Menu>
         </menus>
       </MenuBar>
+      <Label layoutX="974.0" layoutY="748.0" text="Progress:" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="974.0" />
+      <Label layoutX="1335.0" layoutY="748.0" text="0%" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="1167.0" />
+      <Label layoutX="1173.0" layoutY="748.0" text="0%" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="1335.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="17.0" layoutX="1035.0" layoutY="748.0" stroke="BLACK" strokeType="INSIDE" width="120.0" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="1035.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="17.0" layoutX="1205.0" layoutY="748.0" stroke="BLACK" strokeType="INSIDE" width="120.0" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="1205.0" />
    </children>
 </AnchorPane>

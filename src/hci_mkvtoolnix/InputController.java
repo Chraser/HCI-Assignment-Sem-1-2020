@@ -15,9 +15,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
@@ -66,7 +70,7 @@ public class InputController extends AnchorPane
     
     private ObservableList sourceFileList = FXCollections.observableArrayList();
     
-    private ObservableList trackFileList = FXCollections.observableArrayList();
+    private ObservableList trackList = FXCollections.observableArrayList();
     
     public InputController()
     {
@@ -81,6 +85,37 @@ public class InputController extends AnchorPane
         {
             throw new RuntimeException(e);
         }
+        
+        fileNameCol.setCellValueFactory(new PropertyValueFactory<SourceFileModel, String>("FileName"));
+        fileTypeCol.setCellValueFactory(new PropertyValueFactory<SourceFileModel, String>("FileType"));
+        fileSizeCol.setCellValueFactory(new PropertyValueFactory<SourceFileModel, String>("FileSize"));
+        directoryCol.setCellValueFactory(new PropertyValueFactory<SourceFileModel, String>("Directory"));
+        
+        codecCol.setCellValueFactory(new PropertyValueFactory<TrackModel, CheckBox>("Codec"));
+        trackTypeCol.setCellValueFactory(new PropertyValueFactory<TrackModel, String>("TrackType"));
+        copyCol.setCellValueFactory(new PropertyValueFactory<TrackModel, CheckBox>("CopyItem"));
+        langCol.setCellValueFactory(new PropertyValueFactory<TrackModel, String>("Language"));
+        trackNameCol.setCellValueFactory(new PropertyValueFactory<TrackModel, String>("TrackName"));
+        
+        sourceFileList.add(new SourceFileModel("HCI Lecture.mp4", "Mp4", "60.1GB", "C:/Folder1/User/Folder2"));
+        sourceFileList.add(new SourceFileModel("SecretVideo.mkv", "Matroska", "15.1GB", "C:/Folder1/User/HCI"));
+        sourceTable.setItems(sourceFileList);
+        
+        CheckBox codec = new CheckBox("MPEG/AVC/H.264");
+        ImageView green_tick = new ImageView(new Image("icons/green-tick.png"));
+        green_tick.setFitWidth(20);
+        green_tick.setFitHeight(20);
+        Label copyItem = new Label("Yes", green_tick);
+        trackList.add(new TrackModel(codec, "Video", copyItem, "eng", "Blah"));
+        
+        codec = new CheckBox("MP3");
+        green_tick = new ImageView(new Image("icons/green-tick.png"));
+        green_tick.setFitWidth(20);
+        green_tick.setFitHeight(20);
+        copyItem = new Label("Yes", green_tick);
+        trackList.add(new TrackModel(codec, "Audio", copyItem, "eng", "Blah"));
+        
+        trackTable.setItems(trackList);
     }
     
     @FXML
