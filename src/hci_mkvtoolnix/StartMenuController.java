@@ -23,6 +23,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -60,15 +61,11 @@ public class StartMenuController implements Initializable {
         {
             AnchorPane root = (AnchorPane) loader.load();
 
-            //gets the main window controller to send the file list to multiplexer controller
-            MainWindowController nextController = loader.getController();
-            nextController.setFileList(fileList);
-
             Scene scene = new Scene(root);
             Stage stage = HCI_MKVToolNix.getStage();
             stage.setTitle("MKVToolNix GUI Main Menu");
             stage.setScene(scene);
-            stage.getIcons().add(new Image("icons/mkvtoolnix-gui.png"));
+            stage.getIcons().add(new Image("icons/mkvtoolnix-gui-big.png"));
             stage.show();
         }
         catch(IOException e)
@@ -125,6 +122,16 @@ public class StartMenuController implements Initializable {
         comboBox.setButtonCell(new CustomLabelList());
         comboBox.getSelectionModel().selectFirst();
         comboBox.setVisibleRowCount(6);
+        
+        String tooltipString = "Multiplexer - Used for modifying video files\n" +
+                               "Info tool - Used to display all info of video files\n" +
+                               "Header editor - Used to edit header info of video files\n" +
+                               "Chapter editor - Used to edit chapter info of video files\n" +
+                               "Job queue -  Shows the job queue\n" +
+                               "Job output - Shows the list of jobs completed";
+        Tooltip tooltip = new Tooltip(tooltipString);
+        tooltip.setStyle("-fx-font-size: 20; ");
+        comboBox.setTooltip(tooltip);
     }
     
 }

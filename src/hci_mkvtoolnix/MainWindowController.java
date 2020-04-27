@@ -71,23 +71,19 @@ public class MainWindowController implements Initializable {
     
     private MultiplexerController mc = null;
     
-    //sends the file list from start menu to the input controller
-    public void setFileList(List<File> fileList)
-    {
-        mc.setFileList(fileList);
-    }
-    
     @FXML
     public void openPreference() throws IOException
     {
         FXMLLoader loader = new FXMLLoader(HCI_MKVToolNix.class.getResource("Preference.fxml"));
         AnchorPane root = (AnchorPane) loader.load();
+        PreferenceController controller = loader.getController();
         
         Scene scene = new Scene(root);
         Stage stage = new Stage();
+        controller.setStage(stage);
         stage.setTitle("MKVToolNix GUI Preference");
         stage.setScene(scene);
-        stage.getIcons().add(new Image("icons/mkvtoolnix-gui.png"));
+        stage.getIcons().add(new Image("icons/mkvtoolnix-gui-big.png"));
         stage.show();
     }
     

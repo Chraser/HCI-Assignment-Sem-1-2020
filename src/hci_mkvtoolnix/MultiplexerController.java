@@ -73,12 +73,6 @@ public class MultiplexerController extends AnchorPane {
         
     }
     
-    //gets file list from start menu through the main window contrller to the input controller
-    public void setFileList(List<File> fileList)
-    {
-        inputController.setFileList(fileList);
-    }
-    
     @FXML
     private void selectDestinationFile()
     {

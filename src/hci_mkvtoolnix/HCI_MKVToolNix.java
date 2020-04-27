@@ -33,7 +33,7 @@ public class HCI_MKVToolNix extends Application {
         
         stage.setTitle("MKVToolNix GUI Start Menu");
         stage.setScene(scene);
-        stage.getIcons().add(new Image("icons/mkvtoolnix-gui.png"));
+        stage.getIcons().add(new Image("icons/mkvtoolnix-gui-big.png"));
         stage.show();
     }
     

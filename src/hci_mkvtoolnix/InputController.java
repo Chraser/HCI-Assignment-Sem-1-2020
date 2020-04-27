@@ -15,6 +15,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -28,10 +30,43 @@ import javafx.stage.Stage;
  * @student_number 19257442
  */
 public class InputController extends AnchorPane
-{
-    private List<File> fileList = new ArrayList<>();
+{    
+    @FXML
+    private TableView sourceTable;
     
-    private ObservableList fileNames = FXCollections.observableArrayList();
+    @FXML
+    private TableColumn fileNameCol;
+    
+    @FXML
+    private TableColumn fileTypeCol;
+    
+    @FXML
+    private TableColumn fileSizeCol;
+    
+    @FXML
+    private TableColumn directoryCol;
+    
+    @FXML
+    private TableView trackTable;
+    
+    @FXML
+    private TableColumn codecCol;
+    
+    @FXML
+    private TableColumn trackTypeCol;
+    
+    @FXML
+    private TableColumn copyCol;
+    
+    @FXML
+    private TableColumn langCol;
+    
+    @FXML
+    private TableColumn trackNameCol;
+    
+    private ObservableList sourceFileList = FXCollections.observableArrayList();
+    
+    private ObservableList trackFileList = FXCollections.observableArrayList();
     
     public InputController()
     {
@@ -48,20 +83,13 @@ public class InputController extends AnchorPane
         }
     }
     
-    //gets file list from start menu through the input contrller
-    public void setFileList(List<File> fileList)
-    {
-        this.fileList = fileList;
-        System.out.println("file obtained");
-    }
-    
     @FXML
     private void addSourceFiles(ActionEvent event)
     {
         Stage stage = HCI_MKVToolNix.getStage();
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open File");
-        fileList.addAll(fileChooser.showOpenMultipleDialog(stage));
+        fileChooser.showOpenMultipleDialog(stage);
     }
     
     @FXML
