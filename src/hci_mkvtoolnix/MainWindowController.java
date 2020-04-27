@@ -94,9 +94,8 @@ public class MainWindowController implements Initializable {
     @FXML
     public void handleMultiplexerClick(MouseEvent event)
     {
-        System.out.println("Multiplexer is opened");
         resetSideBarColor();
-        multiplexerSideBar.setStyle("-fx-background-color: green");
+        multiplexerSideBar.setStyle("-fx-background-color: darkgreen");
         toolPane.getChildren().clear();
         toolPane.getChildren().add(mc);
     }
@@ -104,57 +103,52 @@ public class MainWindowController implements Initializable {
     @FXML
     public void handleInfoToolClick(MouseEvent event)
     {
-        System.out.println("Info Tool is opened");
         resetSideBarColor();
-        infoToolSideBar.setStyle("-fx-background-color: green");
+        infoToolSideBar.setStyle("-fx-background-color: darkgreen");
         toolPane.getChildren().clear();
         toolPane.getChildren().add(infoToolPane);
     }
     @FXML
     public void handleHeaderEditorClick(MouseEvent event)
     {
-        System.out.println("Header editor is opened");
         resetSideBarColor();
-        headerEditorSideBar.setStyle("-fx-background-color: green");
+        headerEditorSideBar.setStyle("-fx-background-color: darkgreen");
         toolPane.getChildren().clear();
         toolPane.getChildren().add(headerEditorPane);
     }
     @FXML
     public void handleChapterEditorClick(MouseEvent event)
     {
-        System.out.println("Chapter editor is opened");
         resetSideBarColor();
-        chapterEditorSideBar.setStyle("-fx-background-color: green");
+        chapterEditorSideBar.setStyle("-fx-background-color: darkgreen");
         toolPane.getChildren().clear();
         toolPane.getChildren().add(chapterEditorPane);
     }
     @FXML
     public void handleJobQueueClick(MouseEvent event)
     {
-        System.out.println("Job Queue is opened");
         resetSideBarColor();
-        jobQueueSideBar.setStyle("-fx-background-color: green");
+        jobQueueSideBar.setStyle("-fx-background-color: darkgreen");
         toolPane.getChildren().clear();
         toolPane.getChildren().add(jobQueuePane);
     }
     @FXML
     public void handleJobOutputClick(MouseEvent event)
     {
-        System.out.println("Job Output is opened");
         resetSideBarColor();
-        jobOutputSideBar.setStyle("-fx-background-color: green");
+        jobOutputSideBar.setStyle("-fx-background-color: darkgreen");
         toolPane.getChildren().clear();
         toolPane.getChildren().add(jobOutputPane);
     }
     
     private void resetSideBarColor()
     {
-        multiplexerSideBar.setStyle("-fx-background-color: blue");
-        infoToolSideBar.setStyle("-fx-background-color: blue");
-        headerEditorSideBar.setStyle("-fx-background-color: blue");
-        chapterEditorSideBar.setStyle("-fx-background-color: blue");
-        jobQueueSideBar.setStyle("-fx-background-color: blue");
-        jobOutputSideBar.setStyle("-fx-background-color: blue");
+        multiplexerSideBar.setStyle("-fx-background-color: darkblue");
+        infoToolSideBar.setStyle("-fx-background-color: darkblue");
+        headerEditorSideBar.setStyle("-fx-background-color: darkblue");
+        chapterEditorSideBar.setStyle("-fx-background-color: darkblue");
+        jobQueueSideBar.setStyle("-fx-background-color: darkblue");
+        jobOutputSideBar.setStyle("-fx-background-color: darkblue");
     }
     
     /**

@@ -11,10 +11,15 @@ import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 /**
  * FXML Custom Controller class
@@ -51,20 +56,33 @@ public class InputController extends AnchorPane
     }
     
     @FXML
-    private void addSourceFiles()throws IOException 
+    private void addSourceFiles(ActionEvent event)
     {
-        /*Stage stage = HCI_MKVToolNix.getStage();
+        Stage stage = HCI_MKVToolNix.getStage();
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open File");
-        List<File> fileList = fileChooser.showOpenMultipleDialog(stage);
-        for(File file : fileList)
+        fileList.addAll(fileChooser.showOpenMultipleDialog(stage));
+    }
+    
+    @FXML
+    public void openAddingSourceFilesPopup(ActionEvent event)
+    {
+        FXMLLoader loader = new FXMLLoader(HCI_MKVToolNix.class.getResource("AddSourceFiles.fxml"));
+        try
         {
-            System.out.println(file.getName());
-            fileNames.add(file.getName());
+            AnchorPane root = (AnchorPane) loader.load();
+            AddSourceFilesController controller = loader.getController();
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            controller.setStage(stage);
+            stage.setTitle("Adding or Appending files");
+            stage.setScene(scene);
+            stage.getIcons().add(new Image("icons/mkvtoolnix-gui.png"));
+            stage.show();
         }
-        if(fileNames != null)
+        catch(IOException e)
         {
-            listView.setItems(fileNames);
-        }*/
+            throw new RuntimeException(e.getMessage());
+        }
     }
 }

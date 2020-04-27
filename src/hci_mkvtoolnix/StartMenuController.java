@@ -54,20 +54,27 @@ public class StartMenuController implements Initializable {
     private ObservableList fileNames = FXCollections.observableArrayList();
     
     @FXML
-    private void handleOkButtonAction(ActionEvent event) throws IOException {
+    private void handleOkButtonAction(ActionEvent event){
         FXMLLoader loader = new FXMLLoader(HCI_MKVToolNix.class.getResource("MainWindow.fxml"));
-        AnchorPane root = (AnchorPane) loader.load();
-        
-        //gets the main window controller to send the file list to multiplexer controller
-        MainWindowController nextController = loader.getController();
-        nextController.setFileList(fileList);
-        
-        Scene scene = new Scene(root);
-        Stage stage = HCI_MKVToolNix.getStage();
-        stage.setTitle("MKVToolNix GUI Main Menu");
-        stage.setScene(scene);
-        stage.getIcons().add(new Image("icons/mkvtoolnix-gui.png"));
-        stage.show();
+        try
+        {
+            AnchorPane root = (AnchorPane) loader.load();
+
+            //gets the main window controller to send the file list to multiplexer controller
+            MainWindowController nextController = loader.getController();
+            nextController.setFileList(fileList);
+
+            Scene scene = new Scene(root);
+            Stage stage = HCI_MKVToolNix.getStage();
+            stage.setTitle("MKVToolNix GUI Main Menu");
+            stage.setScene(scene);
+            stage.getIcons().add(new Image("icons/mkvtoolnix-gui.png"));
+            stage.show();
+        }
+        catch(IOException e)
+        {
+            throw new RuntimeException(e.getMessage());
+        }
     }
     
     @FXML
@@ -76,13 +83,14 @@ public class StartMenuController implements Initializable {
     }
     
     @FXML
-    private void handleOpenFile() throws Exception {
+    private void handleOpenFile()
+    {
         Stage stage = HCI_MKVToolNix.getStage();
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open File");
         List<File> temp = fileChooser.showOpenMultipleDialog(stage);
         fileList.addAll(temp);
-        for(File file : fileList)
+        for(File file : temp)
         {
             System.out.println(file.getName());
             fileNames.add(file.getName());
@@ -117,6 +125,6 @@ public class StartMenuController implements Initializable {
         comboBox.setButtonCell(new CustomLabelList());
         comboBox.getSelectionModel().selectFirst();
         comboBox.setVisibleRowCount(6);
-    }    
+    }
     
 }
