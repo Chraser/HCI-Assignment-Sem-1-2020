@@ -9,9 +9,9 @@
 
 <fx:root id="AnchorPane" prefHeight="646.0" prefWidth="1090.0" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ComboBox fx:id="predefinedList" layoutX="48.0" layoutY="24.0" prefHeight="25.0" prefWidth="352.0" />
-      <ListView layoutX="48.0" layoutY="69.0" prefHeight="559.0" prefWidth="887.0" />
-      <Button layoutX="987.0" layoutY="100.0" mnemonicParsing="false">
+      <ComboBox fx:id="categoryList" layoutX="48.0" layoutY="24.0" onAction="#changeSelection" prefHeight="25.0" prefWidth="352.0" />
+      <ListView fx:id="listView" layoutX="48.0" layoutY="64.0" prefHeight="559.0" prefWidth="887.0" />
+      <Button layoutX="987.0" layoutY="100.0" mnemonicParsing="false" onAction="#handleAddAction">
          <graphic>
             <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -20,7 +20,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="987.0" layoutY="164.0" mnemonicParsing="false">
+      <Button layoutX="987.0" layoutY="164.0" mnemonicParsing="false" onAction="#handleRemoveAction">
          <graphic>
             <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                <image>

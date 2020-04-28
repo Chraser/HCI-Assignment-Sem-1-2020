@@ -35,8 +35,6 @@ public class PreferenceController implements Initializable {
     @FXML
     private Pane preferencePane;
     
-    private Pane screenshotPane = null;
-    
     private Map<String, Pane> paneMap = new HashMap<>();
     
     private Stage stage;
@@ -62,17 +60,6 @@ public class PreferenceController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        
-        //initialise toBeImplementedPane
-        FXMLLoader loader = new FXMLLoader(HCI_MKVToolNix.class.getResource("ScreenshotPreferencePane.fxml"));
-        try
-        {
-            screenshotPane = loader.load();
-        }
-        catch(IOException e)
-        {
-            throw new RuntimeException(e.getMessage());
-        }
         
         populateMap();
         
@@ -125,19 +112,15 @@ public class PreferenceController implements Initializable {
                 .addListener((ObservableValue<? extends TreeItem<String>> obs, TreeItem<String> oldValue, TreeItem<String> newValue) ->
                 {
                     Pane pane;
-                    if(paneMap.containsKey(newValue.getValue()))
+                    pane = paneMap.get(newValue.getValue());
+                    if(pane != null)
                     {
-                        pane = paneMap.get(newValue.getValue());
+                        preferencePane.getChildren().clear();
+                        preferencePane.getChildren().add(pane);
                     }
-                    else
-                    {
-                        pane = screenshotPane;
-                    }
-                    preferencePane.getChildren().clear();
-                    preferencePane.getChildren().add(pane);
                 });
         
-        preferencePane.getChildren().add(screenshotPane);
+        preferencePane.getChildren().add(paneMap.get("GUI"));
     }    
     
     
