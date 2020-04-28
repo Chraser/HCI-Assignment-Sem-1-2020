@@ -96,6 +96,14 @@ public class StartMenuController implements Initializable {
         }
     }
     
+    @FXML
+    private void removeFile()
+    {
+        int index = listView.getSelectionModel().getSelectedIndex();
+        fileNames.remove(index);
+        listView.setItems(fileNames);
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
