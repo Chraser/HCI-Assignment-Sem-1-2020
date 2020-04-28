@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuItem?>
@@ -7,28 +8,29 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <fx:root id="AnchorPane" prefHeight="503.0" prefWidth="1140.0" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-      <SplitPane dividerPositions="0.5597539543057997" layoutX="-1.0" prefHeight="503.0" prefWidth="1140.0">
+      <SplitPane dividerPositions="0.5606326889279437" layoutX="-1.0" prefHeight="503.0" prefWidth="1140.0">
         <items>
-            <SplitPane dividerPositions="0.49101796407185627" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
+            <SplitPane dividerPositions="0.4111776447105788" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
               <items>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="635.0">
                      <children>
                           <Label layoutX="13.0" layoutY="6.0" text="Source files:" AnchorPane.leftAnchor="13.0" AnchorPane.topAnchor="6.0" />
-                          <TableView fx:id="sourceTable" layoutX="4.0" layoutY="27.0" prefHeight="212.0" prefWidth="473.0" AnchorPane.leftAnchor="4.0" AnchorPane.topAnchor="27.0">
+                          <TableView fx:id="sourceTable" layoutX="4.0" layoutY="27.0" prefHeight="171.0" prefWidth="497.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="135.0" AnchorPane.topAnchor="27.0">
                              <columns>
                                 <TableColumn fx:id="fileNameCol" prefWidth="106.0" text="File Name" />
                                 <TableColumn fx:id="fileTypeCol" prefWidth="98.0" text="File Type" />
                                 <TableColumn fx:id="fileSizeCol" prefWidth="71.0" text="File Size" />
-                                <TableColumn fx:id="directoryCol" prefWidth="198.0" text="Directory" />
+                                <TableColumn fx:id="directoryCol" prefWidth="220.0" text="Directory" />
                              </columns>
                           </TableView>
-                        <SplitMenuButton layoutX="494.0" layoutY="27.0" mnemonicParsing="false" onAction="#addSourceFiles" prefHeight="8.0" prefWidth="32.0" AnchorPane.leftAnchor="494.0" AnchorPane.topAnchor="27.0">
+                        <SplitMenuButton layoutX="518.0" layoutY="27.0" mnemonicParsing="false" onAction="#addSourceFiles" prefHeight="8.0" prefWidth="32.0" AnchorPane.leftAnchor="518.0" AnchorPane.topAnchor="27.0">
                           <items>
                             <MenuItem mnemonicParsing="false" text="Add file" />
                             <MenuItem mnemonicParsing="false" text="Append file" />
@@ -37,17 +39,16 @@
                            <graphic>
                                 <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                    <image>
-                                      <Image url="@../icons/document-open.png" />
+                                      <Image url="@../resources/icons/document-open.png" />
                                    </image>
                                 </ImageView>
                            </graphic>
                         </SplitMenuButton>
-                        <Button layoutX="486.0" layoutY="183.0" mnemonicParsing="false" onAction="#openAddingSourceFilesPopup" prefHeight="25.0" prefWidth="136.0" text="Drag and drop pop up" AnchorPane.leftAnchor="494.0" AnchorPane.topAnchor="180.0" />
-                        <Button layoutX="494.0" layoutY="96.0" mnemonicParsing="false" AnchorPane.leftAnchor="494.0" AnchorPane.topAnchor="96.0">
+                        <Button layoutX="518.0" layoutY="94.0" mnemonicParsing="false" AnchorPane.leftAnchor="518.0" AnchorPane.topAnchor="94.0">
                            <graphic>
                                 <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                    <image>
-                                      <Image url="@../icons/minus-icon.png" />
+                                      <Image url="@../resources/icons/minus-icon.png" />
                                    </image>
                                 </ImageView>
                            </graphic>
@@ -56,21 +57,67 @@
                   </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                      <children>
-                          <TableView fx:id="trackTable" layoutX="10.0" layoutY="24.0" prefHeight="219.0" prefWidth="559.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="24.0">
+                          <Label layoutX="10.0" layoutY="6.0" text="Tracks, chapters and tags:" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="6.0" />
+                          <TableView fx:id="trackTable" layoutX="4.0" layoutY="26.0" prefHeight="257.0" prefWidth="624.0" AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="26.0">
                             <columns>
                               <TableColumn fx:id="codecCol" prefWidth="106.0" text="Codec" />
-                              <TableColumn fx:id="trackTypeCol" prefWidth="98.0" text="Type" />
-                              <TableColumn fx:id="copyCol" prefWidth="71.0" text="Copy Item" />
-                              <TableColumn fx:id="langCol" prefWidth="86.0" text="Language" />
-                              <TableColumn fx:id="trackNameCol" prefWidth="285.0" text="Name" />
+                              <TableColumn fx:id="trackTypeCol" prefWidth="92.0" text="Type" />
+                              <TableColumn fx:id="copyCol" prefWidth="77.0" text="Copy Item" />
+                              <TableColumn fx:id="langCol" prefWidth="63.0" text="Language" />
+                              <TableColumn fx:id="trackNameCol" prefWidth="116.0" text="Name" />
+                              <TableColumn fx:id="codecCol1" prefWidth="86.0" text="ID" />
+                              <TableColumn prefWidth="148.0" text="Default track in output" />
+                              <TableColumn fx:id="codecCol44" prefWidth="87.0" text="Forced track" />
+                              <TableColumn fx:id="codecCol2" prefWidth="86.0" text="Character Set" />
+                              <TableColumn fx:id="codecCol3" prefWidth="146.0" text="Properties" />
+                              <TableColumn fx:id="codecCol4" prefWidth="173.0" text="Source file" />
+                              <TableColumn fx:id="codecCol41" prefWidth="177.0" text="Source file's directory" />
+                              <TableColumn fx:id="codecCol42" prefWidth="106.0" text="Program" />
+                              <TableColumn fx:id="codecCol43" prefWidth="106.0" text="Delay" />
                             </columns>
                           </TableView>
-                          <Label layoutX="10.0" layoutY="6.0" text="Tracks, chapters and tags:" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="6.0" />
                      </children>
                   </AnchorPane>
               </items>
             </SplitPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <Label layoutX="4.0" layoutY="6.0" text="Properties:" AnchorPane.leftAnchor="4.0" AnchorPane.topAnchor="6.0" />
+                  <Accordion layoutX="4.0" layoutY="23.0" prefHeight="464.0" prefWidth="484.0">
+                    <panes>
+                      <TitledPane animated="false" text="General options">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                        </content>
+                      </TitledPane>
+                      <TitledPane animated="false" text="Timestamps and default duration">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                        </content>
+                      </TitledPane>
+                      <TitledPane animated="false" text="Video properties">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                        </content>
+                      </TitledPane>
+                        <TitledPane animated="false" text="Audio properties">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                           </content>
+                        </TitledPane>
+                        <TitledPane animated="false" text="Subtitle and chapter properties">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                           </content>
+                        </TitledPane>
+                        <TitledPane animated="false" text="Miscellaneous">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                           </content>
+                        </TitledPane>
+                    </panes>
+                  </Accordion>
+               </children></AnchorPane>
         </items>
       </SplitPane>
     </children>

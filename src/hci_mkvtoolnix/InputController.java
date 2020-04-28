@@ -127,25 +127,5 @@ public class InputController extends AnchorPane
         fileChooser.showOpenMultipleDialog(stage);
     }
     
-    @FXML
-    public void openAddingSourceFilesPopup(ActionEvent event)
-    {
-        FXMLLoader loader = new FXMLLoader(HCI_MKVToolNix.class.getResource("AddSourceFiles.fxml"));
-        try
-        {
-            AnchorPane root = (AnchorPane) loader.load();
-            AddSourceFilesController controller = loader.getController();
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            controller.setStage(stage);
-            stage.setTitle("Adding or Appending files");
-            stage.setScene(scene);
-            stage.getIcons().add(new Image("icons/mkvtoolnix-gui.png"));
-            stage.show();
-        }
-        catch(IOException e)
-        {
-            throw new RuntimeException(e.getMessage());
-        }
-    }
+    
 }

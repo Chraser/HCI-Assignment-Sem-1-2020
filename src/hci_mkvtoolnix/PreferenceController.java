@@ -35,7 +35,7 @@ public class PreferenceController implements Initializable {
     @FXML
     private Pane preferencePane;
     
-    private Pane toBeImplementedPane = null;
+    private Pane screenshotPane = null;
     
     private Map<String, Pane> paneMap = new HashMap<>();
     
@@ -64,19 +64,17 @@ public class PreferenceController implements Initializable {
         // TODO
         
         //initialise toBeImplementedPane
-        FXMLLoader loader = new FXMLLoader(HCI_MKVToolNix.class.getResource("ToBeImplemented.fxml"));
+        FXMLLoader loader = new FXMLLoader(HCI_MKVToolNix.class.getResource("ScreenshotPreferencePane.fxml"));
         try
         {
-            toBeImplementedPane = loader.load();
+            screenshotPane = loader.load();
         }
         catch(IOException e)
         {
             throw new RuntimeException(e.getMessage());
         }
         
-        //populate the paneMap
-        paneMap.put("- Predefined values", new Pane());
-        paneMap.put("- Executing actions", new Pane());
+        populateMap();
         
         //create a stand-in invisible root node
         TreeItem<String> root = new TreeItem<>();
@@ -85,23 +83,23 @@ public class PreferenceController implements Initializable {
         //creating the preference categories
         TreeItem<String> gui = new TreeItem<>("GUI");
         gui.setExpanded(true);
-        gui.setGraphic(makeImage("icons/mkvtoolnix-gui-small.png"));
+        gui.setGraphic(makeImage("resources/icons/mkvtoolnix-gui-small.png"));
         
         TreeItem<String> multiplexer = new TreeItem<>("Multiplexer");
         multiplexer.setExpanded(true);
-        multiplexer.setGraphic(makeImage("icons/multiplexer-small.png"));
+        multiplexer.setGraphic(makeImage("resources/icons/multiplexer-small.png"));
         
         TreeItem<String> infoTool = new TreeItem<>("Info Tool");
-        infoTool.setGraphic(makeImage("icons/info-tool-small.png"));
+        infoTool.setGraphic(makeImage("resources/icons/info-tool-small.png"));
         
         TreeItem<String> headerEditor = new TreeItem<>("Header Editor");
-        headerEditor.setGraphic(makeImage("icons/header-editor-small.png"));
+        headerEditor.setGraphic(makeImage("resources/icons/header-editor-small.png"));
         
         TreeItem<String> chapterEditor = new TreeItem<>("Chapter Editor");
-        chapterEditor.setGraphic(makeImage("icons/chapter-editor-small.png"));
+        chapterEditor.setGraphic(makeImage("resources/icons/chapter-editor-small.png"));
         
         TreeItem<String> job = new TreeItem<>("Jobs & job queue");
-        job.setGraphic(makeImage("icons/job-output-small.png"));
+        job.setGraphic(makeImage("resources/icons/job-output-small.png"));
         job.setExpanded(true);
         
         //now creating and adding the sub parts of each category in preference list
@@ -133,13 +131,13 @@ public class PreferenceController implements Initializable {
                     }
                     else
                     {
-                        pane = toBeImplementedPane;
+                        pane = screenshotPane;
                     }
                     preferencePane.getChildren().clear();
                     preferencePane.getChildren().add(pane);
                 });
         
-        preferencePane.getChildren().add(toBeImplementedPane);
+        preferencePane.getChildren().add(screenshotPane);
     }    
     
     
@@ -149,5 +147,39 @@ public class PreferenceController implements Initializable {
         image.setFitHeight(22);
         image.setFitWidth(22);
         return image;
+    }
+    
+    private void populateMap()
+    {
+        paneMap.put("GUI", makeNewScreenshotPane("resources/screenshots/Preference-GUI.png"));
+        paneMap.put("- Often used selections", makeNewScreenshotPane("resources/screenshots/Preference-Often_used_selections.png"));
+        paneMap.put("Multiplexer", makeNewScreenshotPane("resources/screenshots/Preference-Multiplexer.png"));
+        paneMap.put("- Predefined values", new PredefinedValuesController());
+        paneMap.put("- Default values", makeNewScreenshotPane("resources/screenshots/Preference-Default_values.png"));
+        paneMap.put("- Deriving track languages", makeNewScreenshotPane("resources/screenshots/Preference-Deriving_track_languages.png"));
+        paneMap.put("- Enabling items", makeNewScreenshotPane("resources/screenshots/Preference-Enabling_items.png"));
+        paneMap.put("- Playlists & Blu-rays", makeNewScreenshotPane("resources/screenshots/Preference-Playlists_&_Blu-rays.png"));
+        paneMap.put("Info Tool", makeNewScreenshotPane("resources/screenshots/Preference-Info_tool.png"));
+        paneMap.put("Header Editor", makeNewScreenshotPane("resources/screenshots/Preference-Header_editor.png"));
+        paneMap.put("Chapter Editor", makeNewScreenshotPane("resources/screenshots/Preference-Chapter_editor.png"));
+        paneMap.put("Jobs & job queue", makeNewScreenshotPane("resources/screenshots/Preference-Jobs_&_job_queue.png"));
+        paneMap.put("- Executing actions", new ExecutingActionsController());
+    }
+    
+    private Pane makeNewScreenshotPane(String imagePath)
+    {
+        Pane temp = null;
+        FXMLLoader loader = new FXMLLoader(HCI_MKVToolNix.class.getResource("ScreenshotPreferencePane.fxml"));
+        try
+        {
+            temp = loader.load();
+            ImageView image = (ImageView)temp.getChildren().get(0);
+            image.setImage(new Image(imagePath));
+        }
+        catch(IOException e)
+        {
+            throw new RuntimeException(e.getMessage());
+        }
+        return temp;
     }
 }

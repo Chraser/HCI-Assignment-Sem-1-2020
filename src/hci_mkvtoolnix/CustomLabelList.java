@@ -7,10 +7,12 @@ package hci_mkvtoolnix;
 
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 /**
  *
- * @author Chraser
+ * @author Kay Men Yap 19257442
  */
 public class CustomLabelList extends ListCell<Label>
 {
@@ -23,7 +25,11 @@ public class CustomLabelList extends ListCell<Label>
             setText(null);
         } else {
             setText(item.getText());
-            setGraphic(item.getGraphic());
+            Image image = ((ImageView)item.getGraphic()).getImage();
+            ImageView temp = new ImageView(image);
+            temp.setFitWidth(32);
+            temp.setFitHeight(32);
+            setGraphic(temp);
         }
     }
 }

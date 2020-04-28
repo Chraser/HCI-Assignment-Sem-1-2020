@@ -23,6 +23,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -59,15 +60,7 @@ public class MainWindowController implements Initializable {
     @FXML
     private BorderPane jobOutputSideBar;
     
-    private Pane infoToolPane;
-    
-    private Pane headerEditorPane;
-    
-    private Pane chapterEditorPane;
-    
-    private Pane jobQueuePane;
-    
-    private Pane jobOutputPane;
+    private Pane screenshotToolPane;
     
     private MultiplexerController mc = null;
     
@@ -83,7 +76,7 @@ public class MainWindowController implements Initializable {
         controller.setStage(stage);
         stage.setTitle("MKVToolNix GUI Preference");
         stage.setScene(scene);
-        stage.getIcons().add(new Image("icons/mkvtoolnix-gui-big.png"));
+        stage.getIcons().add(new Image("resources/icons/mkvtoolnix-gui-big.png"));
         stage.show();
     }
     
@@ -101,40 +94,54 @@ public class MainWindowController implements Initializable {
     {
         resetSideBarColor();
         infoToolSideBar.setStyle("-fx-background-color: darkgreen");
+        ImageView image = (ImageView)screenshotToolPane.getChildren().get(0);
+        image.setImage(new Image("resources/screenshots/Info-Tool.png"));
         toolPane.getChildren().clear();
-        toolPane.getChildren().add(infoToolPane);
+        toolPane.getChildren().add(screenshotToolPane);
     }
+    
     @FXML
     public void handleHeaderEditorClick(MouseEvent event)
     {
         resetSideBarColor();
         headerEditorSideBar.setStyle("-fx-background-color: darkgreen");
+        ImageView image = (ImageView)screenshotToolPane.getChildren().get(0);
+        image.setImage(new Image("resources/screenshots/Header-Editor.png"));
         toolPane.getChildren().clear();
-        toolPane.getChildren().add(headerEditorPane);
+        toolPane.getChildren().add(screenshotToolPane);
     }
+    
     @FXML
     public void handleChapterEditorClick(MouseEvent event)
     {
         resetSideBarColor();
         chapterEditorSideBar.setStyle("-fx-background-color: darkgreen");
+        ImageView image = (ImageView)screenshotToolPane.getChildren().get(0);
+        image.setImage(new Image("resources/screenshots/Chapter-Editor.png"));
         toolPane.getChildren().clear();
-        toolPane.getChildren().add(chapterEditorPane);
+        toolPane.getChildren().add(screenshotToolPane);
     }
+    
     @FXML
     public void handleJobQueueClick(MouseEvent event)
     {
         resetSideBarColor();
         jobQueueSideBar.setStyle("-fx-background-color: darkgreen");
+        ImageView image = (ImageView)screenshotToolPane.getChildren().get(0);
+        image.setImage(new Image("resources/screenshots/Job-Queue.png"));
         toolPane.getChildren().clear();
-        toolPane.getChildren().add(jobQueuePane);
+        toolPane.getChildren().add(screenshotToolPane);
     }
+    
     @FXML
     public void handleJobOutputClick(MouseEvent event)
     {
         resetSideBarColor();
         jobOutputSideBar.setStyle("-fx-background-color: darkgreen");
+        ImageView image = (ImageView)screenshotToolPane.getChildren().get(0);
+        image.setImage(new Image("resources/screenshots/Job-Output.png"));
         toolPane.getChildren().clear();
-        toolPane.getChildren().add(jobOutputPane);
+        toolPane.getChildren().add(screenshotToolPane);
     }
     
     private void resetSideBarColor()
@@ -155,32 +162,15 @@ public class MainWindowController implements Initializable {
         // TODO
         mc = new MultiplexerController();
         toolPane.getChildren().add(mc);
-        FXMLLoader loader = new FXMLLoader(HCI_MKVToolNix.class.getResource("InfoTool.fxml"));
+        FXMLLoader loader = new FXMLLoader(HCI_MKVToolNix.class.getResource("ScreenshotToolPane.fxml"));
         try
         {
-            infoToolPane = (Pane) loader.load();
-            loader = new FXMLLoader(HCI_MKVToolNix.class.getResource("HeaderEditor.fxml"));
-            headerEditorPane = (Pane) loader.load();
-            loader = new FXMLLoader(HCI_MKVToolNix.class.getResource("ChapterEditor.fxml"));
-            chapterEditorPane = (Pane) loader.load();
-            loader = new FXMLLoader(HCI_MKVToolNix.class.getResource("JobQueue.fxml"));
-            jobQueuePane = (Pane) loader.load();
-            loader = new FXMLLoader(HCI_MKVToolNix.class.getResource("JobOutput.fxml"));
-            jobOutputPane = (Pane) loader.load();
+            screenshotToolPane = (Pane) loader.load();
         }
         catch(IOException e)
         {
             throw new RuntimeException(e.getMessage());
         }
-        /*
-        Button button = new Button("Preference");
-
-        CustomMenuItem customMenuItem = new CustomMenuItem();
-        customMenuItem.setContent(button);
-        customMenuItem.setHideOnClick(false);
-        Menu menu1 = menuBar.getMenus().get(0);
-        menu1.getItems().add(customMenuItem);
-        */
     }    
     
 }

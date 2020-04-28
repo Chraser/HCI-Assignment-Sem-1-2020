@@ -18,7 +18,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author Chraser
+ * @author Kay Men Yap 19257442
  */
 public class HCI_MKVToolNix extends Application {
     private static Stage primaryStage;
@@ -33,7 +33,7 @@ public class HCI_MKVToolNix extends Application {
         
         stage.setTitle("MKVToolNix GUI Start Menu");
         stage.setScene(scene);
-        stage.getIcons().add(new Image("icons/mkvtoolnix-gui-big.png"));
+        stage.getIcons().add(new Image("resources/icons/mkvtoolnix-gui-big.png"));
         stage.show();
     }
     

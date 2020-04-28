@@ -22,7 +22,7 @@
          <graphic>
             <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../icons/dialog-warning-grayscale.png" />
+                  <Image url="@../resources/icons/dialog-warning-grayscale.png" />
                </image>
             </ImageView>
          </graphic></Label>
@@ -30,7 +30,7 @@
          <graphic>
             <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../icons/dialog-error-grayscale.png" />
+                  <Image url="@../resources//icons/dialog-error-grayscale.png" />
                </image>
             </ImageView>
          </graphic></Label>
@@ -52,7 +52,7 @@
                <top>
                   <ImageView fitHeight="72.0" fitWidth="114.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                      <image>
-                        <Image url="@../icons/multiplexer-big.png" />
+                        <Image url="@../resources/icons/multiplexer-big.png" />
                      </image>
                   </ImageView>
                </top>
@@ -68,7 +68,7 @@
                <top>
                   <ImageView fitHeight="72.0" fitWidth="114.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                      <image>
-                        <Image url="@../icons/info-tool-big.png" />
+                        <Image url="@../resources/icons/info-tool-big.png" />
                      </image>
                   </ImageView>
                </top>
@@ -84,7 +84,7 @@
                <top>
                   <ImageView fitHeight="72.0" fitWidth="114.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                      <image>
-                        <Image url="@../icons/header-editor-big.png" />
+                        <Image url="@../resources/icons/header-editor-big.png" />
                      </image>
                   </ImageView>
                </top>
@@ -100,7 +100,7 @@
                <top>
                   <ImageView fitHeight="72.0" fitWidth="114.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                      <image>
-                        <Image url="@../icons/chapter-editor-small.png" />
+                        <Image url="@../resources/icons/chapter-editor-small.png" />
                      </image>
                   </ImageView>
                </top>
@@ -116,7 +116,7 @@
                <top>
                   <ImageView fitHeight="72.0" fitWidth="114.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                      <image>
-                        <Image url="@../icons/job-queue-big.png" />
+                        <Image url="@../resources/icons/job-queue-big.png" />
                      </image>
                   </ImageView>
                </top>
@@ -132,7 +132,7 @@
                <top>
                   <ImageView fitHeight="72.0" fitWidth="114.0" onMouseClicked="#handleJobOutputClick" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                      <image>
-                        <Image url="@../icons/job-output-big.png" />
+                        <Image url="@../resources/icons/job-output-big.png" />
                      </image>
                   </ImageView>
                </top>
@@ -161,6 +161,17 @@
               <MenuItem mnemonicParsing="false" text="Save Settings as" />
               <MenuItem mnemonicParsing="false" text="Create option file" />
               <MenuItem mnemonicParsing="false" text="Close" />
+                  <MenuItem mnemonicParsing="false" text="Start Multiplexing" />
+                  <MenuItem mnemonicParsing="false" text="Add to job queue" />
+                  <Menu mnemonicParsing="false" text="Actions for all tabs">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Save settings" />
+                        <MenuItem mnemonicParsing="false" text="Close" />
+                        <MenuItem mnemonicParsing="false" text="Start Multiplexing" />
+                        <MenuItem mnemonicParsing="false" text="Add to job queue" />
+                    </items>
+                  </Menu>
+                  <MenuItem mnemonicParsing="false" text="Show command line" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Window">

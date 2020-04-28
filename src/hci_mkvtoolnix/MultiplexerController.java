@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -44,6 +45,8 @@ public class MultiplexerController extends AnchorPane {
     private Pane outputPane;
     
     private Pane attachmentPane;
+    
+    private Stage stage;
     
     public MultiplexerController()
     {
@@ -101,5 +104,27 @@ public class MultiplexerController extends AnchorPane {
     {
         pane.getChildren().clear();
         pane.getChildren().add(attachmentPane);
+    }
+    
+    @FXML
+    public void openAddingSourceFilesPopup(ActionEvent event)
+    {
+        FXMLLoader loader = new FXMLLoader(HCI_MKVToolNix.class.getResource("AddSourceFiles.fxml"));
+        try
+        {
+            AnchorPane root = (AnchorPane) loader.load();
+            AddSourceFilesController controller = loader.getController();
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            controller.setStage(stage);
+            stage.setTitle("Adding or Appending files");
+            stage.setScene(scene);
+            stage.getIcons().add(new Image("resources/icons/mkvtoolnix-gui-big.png"));
+            stage.show();
+        }
+        catch(IOException e)
+        {
+            throw new RuntimeException(e.getMessage());
+        }
     }
 }

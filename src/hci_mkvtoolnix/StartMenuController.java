@@ -27,7 +27,6 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.stage.FileChooser;
@@ -50,8 +49,6 @@ public class StartMenuController implements Initializable {
     @FXML
     private ListView listView;
     
-    private List<File> fileList = new ArrayList<>();
-    
     private ObservableList fileNames = FXCollections.observableArrayList();
     
     @FXML
@@ -65,7 +62,7 @@ public class StartMenuController implements Initializable {
             Stage stage = HCI_MKVToolNix.getStage();
             stage.setTitle("MKVToolNix GUI Main Menu");
             stage.setScene(scene);
-            stage.getIcons().add(new Image("icons/mkvtoolnix-gui-big.png"));
+            stage.getIcons().add(new Image("resources/icons/mkvtoolnix-gui-big.png"));
             stage.show();
         }
         catch(IOException e)
@@ -86,28 +83,27 @@ public class StartMenuController implements Initializable {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open File");
         List<File> temp = fileChooser.showOpenMultipleDialog(stage);
-        fileList.addAll(temp);
-        for(File file : temp)
+        if(temp != null)
         {
-            System.out.println(file.getName());
-            fileNames.add(file.getName());
-        }
-        if(fileNames != null)
-        {
-            listView.setItems(fileNames);
+            for(File file : temp)
+            {
+                fileNames.add(file.getName());
+            }
+            if(fileNames != null)
+            {
+                listView.setItems(fileNames);
+            }
         }
     }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        Label multiplexer = new Label("Multiplexer", new ImageView(new Image("icons/multiplexer-small.png")));
-        Label infoTool = new Label("Info Tool", new ImageView(new Image("icons/info-tool-small.png")));
-        Label headerEditor = new Label("Header Editor", new ImageView(new Image("icons/header-editor-small.png")));
-        Label chapterEditor = new Label("Chapter Editor", new ImageView(new Image("icons/chapter-editor-small.png")));
-        ImageView temp = new ImageView(new Image("icons/job-queue-small.png"));
-        temp.setFitWidth(32);
-        temp.setFitHeight(32);
+        Label multiplexer = new Label("Multiplexer", new ImageView(new Image("resources/icons/multiplexer-small.png")));
+        Label infoTool = new Label("Info Tool", new ImageView(new Image("resources/icons/info-tool-small.png")));
+        Label headerEditor = new Label("Header Editor", new ImageView(new Image("resources/icons/header-editor-small.png")));
+        Label chapterEditor = new Label("Chapter Editor", new ImageView(new Image("resources/icons/chapter-editor-small.png")));
+        ImageView temp = new ImageView(new Image("resources/icons/job-queue-small.png"));
         Label jobQueue = new Label("Job Queue", temp);
         Label jobOutput = new Label("Job Output", new ImageView(new Image("icons/job-output-small.png")));
         comboBox.getItems().addAll(multiplexer, infoTool, headerEditor, chapterEditor, jobQueue, jobOutput);

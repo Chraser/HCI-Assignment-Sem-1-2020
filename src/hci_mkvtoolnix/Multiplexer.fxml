@@ -55,7 +55,7 @@
          <graphic>
             <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../icons/document-open.png" />
+                  <Image url="@../resources/icons/document-open.png" />
                </image>
             </ImageView>
          </graphic>
@@ -64,7 +64,7 @@
          <graphic>
              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                 <image>
-                   <Image url="@../icons/plus-icon.png" />
+                   <Image url="@../resources/icons/plus-icon.png" />
                 </image>
              </ImageView>
          </graphic>
@@ -73,10 +73,11 @@
          <graphic>
              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                 <image>
-                   <Image url="@../icons/minus-icon.png" />
+                   <Image url="@../resources/icons/minus-icon.png" />
                 </image>
              </ImageView>
          </graphic>
       </Button>
+      <Button layoutX="534.0" layoutY="15.0" mnemonicParsing="false" onAction="#openAddingSourceFilesPopup" prefHeight="25.0" prefWidth="136.0" text="Drag and drop pop up" />
     </children>
 </fx:root>
