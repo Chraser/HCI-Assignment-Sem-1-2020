@@ -48,8 +48,14 @@ public class ExecutingActionsController extends AnchorPane
     }
     
     @FXML
+    private void changeType()
+    {
+        int currentAction = actionList.getSelectionModel().getSelectedIndex();
+    }
+    
+    @FXML
     private void changeType(ActionEvent event)
     {
-        int currentCategory = typeList.getSelectionModel().getSelectedIndex();
+        int currentType = typeList.getSelectionModel().getSelectedIndex();
     }
 }

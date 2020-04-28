@@ -27,7 +27,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <ComboBox fx:id="actionList" layoutX="28.0" layoutY="51.0" onAction="#changeSelection" prefHeight="29.0" prefWidth="324.0" />
+      <ComboBox fx:id="actionList" layoutX="28.0" layoutY="51.0" onAction="#changeAction" prefHeight="29.0" prefWidth="324.0" />
       <CheckBox fx:id="configurationActive" layoutX="28.0" layoutY="100.0" mnemonicParsing="false" text="Configuration active">
          <font>
             <Font size="15.0" />
