@@ -35,6 +35,11 @@ public class HCI_MKVToolNix extends Application {
         stage.setScene(scene);
         stage.getIcons().add(new Image("resources/icons/mkvtoolnix-gui-big.png"));
         stage.show();
+        stage.setOnCloseRequest(e ->
+        {
+            Platform.exit();
+            System.exit(0);
+        });
     }
     
     public static Stage getStage()

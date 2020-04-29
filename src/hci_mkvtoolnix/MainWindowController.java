@@ -81,7 +81,7 @@ public class MainWindowController implements Initializable {
     }
     
     @FXML
-    public void handleMultiplexerClick(MouseEvent event)
+    private void handleMultiplexerClick()
     {
         resetSideBarColor();
         multiplexerSideBar.setStyle("-fx-background-color: darkgreen");
@@ -90,7 +90,7 @@ public class MainWindowController implements Initializable {
     }
     
     @FXML
-    public void handleInfoToolClick(MouseEvent event)
+    private void handleInfoToolClick()
     {
         resetSideBarColor();
         infoToolSideBar.setStyle("-fx-background-color: darkgreen");
@@ -101,7 +101,7 @@ public class MainWindowController implements Initializable {
     }
     
     @FXML
-    public void handleHeaderEditorClick(MouseEvent event)
+    private void handleHeaderEditorClick()
     {
         resetSideBarColor();
         headerEditorSideBar.setStyle("-fx-background-color: darkgreen");
@@ -112,7 +112,7 @@ public class MainWindowController implements Initializable {
     }
     
     @FXML
-    public void handleChapterEditorClick(MouseEvent event)
+    private void handleChapterEditorClick()
     {
         resetSideBarColor();
         chapterEditorSideBar.setStyle("-fx-background-color: darkgreen");
@@ -123,7 +123,7 @@ public class MainWindowController implements Initializable {
     }
     
     @FXML
-    public void handleJobQueueClick(MouseEvent event)
+    private void handleJobQueueClick()
     {
         resetSideBarColor();
         jobQueueSideBar.setStyle("-fx-background-color: darkgreen");
@@ -134,7 +134,7 @@ public class MainWindowController implements Initializable {
     }
     
     @FXML
-    public void handleJobOutputClick(MouseEvent event)
+    private void handleJobOutputClick()
     {
         resetSideBarColor();
         jobOutputSideBar.setStyle("-fx-background-color: darkgreen");
@@ -142,6 +142,31 @@ public class MainWindowController implements Initializable {
         image.setImage(new Image("resources/screenshots/Job-Output.png"));
         toolPane.getChildren().clear();
         toolPane.getChildren().add(screenshotToolPane);
+    }
+    
+    public void setInitialMode(int mode)
+    {
+        switch(mode)
+        {
+            case 0:
+                handleMultiplexerClick();
+                break;
+            case 1:
+                handleInfoToolClick();
+                break;
+            case 2:
+                handleHeaderEditorClick();
+                break;
+            case 3:
+                handleChapterEditorClick();
+                break;
+            case 4:
+                handleJobQueueClick();
+                break;
+            default:
+                handleJobOutputClick();
+                break;
+        }
     }
     
     private void resetSideBarColor()

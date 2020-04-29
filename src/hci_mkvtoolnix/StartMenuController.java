@@ -57,7 +57,9 @@ public class StartMenuController implements Initializable {
         try
         {
             AnchorPane root = (AnchorPane) loader.load();
-
+            MainWindowController controller = loader.getController();
+            int index = comboBox.getSelectionModel().getSelectedIndex();
+            controller.setInitialMode(index);
             Scene scene = new Scene(root);
             Stage stage = HCI_MKVToolNix.getStage();
             stage.setTitle("MKVToolNix GUI Main Menu");

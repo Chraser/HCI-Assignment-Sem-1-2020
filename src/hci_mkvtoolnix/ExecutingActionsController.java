@@ -7,6 +7,8 @@ package hci_mkvtoolnix;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,7 +26,7 @@ import javafx.stage.Stage;
 public class ExecutingActionsController extends AnchorPane
 {
     @FXML
-    private ComboBox actionList;
+    private ComboBox comboBox;
     
     @FXML
     private CheckBox configurationActive;
@@ -33,10 +35,39 @@ public class ExecutingActionsController extends AnchorPane
     private TextField audioFileField;
     
     @FXML
+    private AnchorPane configPane;
+    
+    @FXML
+    private CheckBox configActive;
+    
+    @FXML
+    private TextField nameField;
+    
+    @FXML
     private ComboBox typeList;
     
     @FXML
-    private AnchorPane configPane;
+    private CheckBox afterJobSuccess;
+    
+    @FXML
+    private CheckBox afterJobExit;
+    
+    @FXML
+    private CheckBox afterJobStopped;
+    
+    @FXML
+    private TextField volumeField;
+    
+    @FXML
+    private TextField commandLineField;
+    
+    @FXML
+    private AnchorPane audioTypePane;
+    
+    @FXML
+    private AnchorPane executeTypePane;
+    
+    private List<ActionModel> actionList = new ArrayList<>();
     
     private Stage stage;
     
@@ -53,7 +84,19 @@ public class ExecutingActionsController extends AnchorPane
         {
             throw new RuntimeException(e);
         }
-        typeList.getItems().addAll("");
+        typeList.getItems().addAll("Execute a program", "Play an audio file", "Shut down the computer",
+                                   "Hibernate the computer", "Sleep the computer", 
+                                   "Delete source files for multiplexer jobs");
+        
+        actionList.add(new ActionModel(true, "Play sound", 1, false, false, false, new String[]{"C:/folder1/audio.ogg","100%"}));
+        actionList.add(new ActionModel(true, "Execute blah", 0, false, false, true, new String[]{"-why"}));
+        actionList.add(new ActionModel(false, "Shut down pc", 2, false, true, true, null));
+        for(ActionModel action : actionList)
+        {
+            comboBox.getItems().add(action.getName());
+        }
+        comboBox.getSelectionModel().selectFirst();
+        changeAction();
     }
     
     public void setStage(Stage stage)
@@ -84,12 +127,92 @@ public class ExecutingActionsController extends AnchorPane
     @FXML
     private void changeAction()
     {
-        int currentAction = actionList.getSelectionModel().getSelectedIndex();
+        int currentAction = comboBox.getSelectionModel().getSelectedIndex();
+        ActionModel action = actionList.get(currentAction);
+        configActive.setSelected(action.getConfigActive());
+        configPane.setDisable(!action.getConfigActive());
+        nameField.setText(action.getName());
+        typeList.getSelectionModel().select(action.getType());
+        afterJobSuccess.setSelected(action.getJobSuccess());
+        afterJobExit.setSelected(action.getJobExit());
+        afterJobStopped.setSelected(action.getJobStopped());
+        if(action.getExtraInfo() != null)
+        {
+            if(action.getExtraInfo().length == 1)
+            {
+               audioTypePane.setVisible(false);
+               executeTypePane.setVisible(true);
+               commandLineField.setText(action.getExtraInfo()[0]);               
+            }
+            else
+            {
+                audioTypePane.setVisible(true);
+                executeTypePane.setVisible(false);
+                audioFileField.setText(action.getExtraInfo()[0]);
+                volumeField.setText(action.getExtraInfo()[1]);
+            }
+        }
+        else
+        {
+            audioTypePane.setVisible(false);
+            executeTypePane.setVisible(false);
+        }
     }
     
     @FXML
-    private void changeType(ActionEvent event)
+    private void addAction()
+    {
+        ActionModel newAction = new ActionModel(true, "Name", 0, false, false, false, new String[]{"Why"});
+        actionList.add(newAction);
+        comboBox.getItems().add(newAction.getName());
+        comboBox.getSelectionModel().selectLast();
+    }
+    
+    @FXML
+    private void removeAction()
+    {
+        int currentAction = comboBox.getSelectionModel().getSelectedIndex();
+        actionList.remove(currentAction);
+        comboBox.getItems().remove(currentAction);
+        comboBox.getSelectionModel().selectNext();
+    }
+    
+    @FXML
+    private void changeType()
     {
         int currentType = typeList.getSelectionModel().getSelectedIndex();
+    }
+    
+    @FXML
+    private void changeConfig()
+    {
+        int currentAction = comboBox.getSelectionModel().getSelectedIndex();
+        ActionModel action = actionList.get(currentAction);
+        action.setConfigActive();
+        configPane.setDisable(!action.getConfigActive());
+    }
+    
+    @FXML
+    private void changeJobSuccess()
+    {
+        int currentAction = comboBox.getSelectionModel().getSelectedIndex();
+        ActionModel action = actionList.get(currentAction);
+        action.setJobSuccess();;
+    }
+    
+    @FXML
+    private void changeJobExit()
+    {
+        int currentAction = comboBox.getSelectionModel().getSelectedIndex();
+        ActionModel action = actionList.get(currentAction);
+        action.setJobExit();;
+    }
+    
+    @FXML
+    private void changeJobStopped()
+    {
+        int currentAction = comboBox.getSelectionModel().getSelectedIndex();
+        ActionModel action = actionList.get(currentAction);
+        action.setJobStopped();;
     }
 }
