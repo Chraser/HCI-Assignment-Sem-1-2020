@@ -75,6 +75,18 @@ public class ActionModel
 
     public void setType(int type) {
         this.type = type;
+        if(type == 0)
+        {
+            extraInfo = new String[]{"-someArgs"};
+        }
+        else if(type == 1)
+        {
+            extraInfo = new String[]{"CodingSounds.ogg","1000%"};
+        }
+        else
+        {
+            extraInfo = null;
+        }
     }
 
     public void setJobSuccess() {
@@ -87,9 +99,5 @@ public class ActionModel
 
     public void setJobStopped() {
         this.jobStopped = !this.jobStopped;
-    }
-
-    public void setExtraInfo(String[] extraInfo) {
-        this.extraInfo = extraInfo;
     }
 }

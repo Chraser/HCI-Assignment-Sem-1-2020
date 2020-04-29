@@ -24,7 +24,7 @@ import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
- * @author Chraser
+ * @author Kay Men Yap 19257442
  */
 public class AddSourceFilesController implements Initializable {
 
@@ -39,9 +39,16 @@ public class AddSourceFilesController implements Initializable {
     
     private Stage stage = null;
     
+    private InputController ic;
+    
     public void setStage(Stage stage)
     {
         this.stage = stage;
+    }
+    
+    public void setInputController(InputController ic)
+    {
+        this.ic = ic;
     }
     
     @FXML

@@ -27,8 +27,7 @@ import javafx.stage.Stage;
 /**
  * FXML Custom Controller class
  *
- * @author Kay Men Yap
- * @student_number 19257442
+ * @author Kay Men Yap 19257442
  */
 public class InputController extends AnchorPane
 {    
@@ -65,7 +64,7 @@ public class InputController extends AnchorPane
     @FXML
     private TableColumn trackNameCol;
     
-    @FXML
+    @FXML 
     private TableColumn defaultTrackCol;
     
     @FXML
@@ -77,9 +76,13 @@ public class InputController extends AnchorPane
     @FXML
     private TableColumn fileDirectoryCol;
     
-    private ObservableList sourceFileList = FXCollections.observableArrayList();
+    private ObservableList sourceFileOList = FXCollections.observableArrayList();
     
-    private ObservableList trackList = FXCollections.observableArrayList();
+    private ObservableList trackOList = FXCollections.observableArrayList();
+    
+    private List<SourceFileModel> sourceFileList = new ArrayList<>();
+    
+    private List<TrackModel> trackList = new ArrayList<>();
     
     public InputController()
     {
@@ -109,24 +112,6 @@ public class InputController extends AnchorPane
         forcedTrackCol.setCellValueFactory(new PropertyValueFactory<TrackModel, Label>("ForcedTrack"));
         fileCol.setCellValueFactory(new PropertyValueFactory<TrackModel, String>("SourceFile"));
         fileDirectoryCol.setCellValueFactory(new PropertyValueFactory<TrackModel, String>("Directory"));
-        
-        sourceFileList.add(new SourceFileModel("HCI Lecture.mp4", "Mp4", "60.1GB", "C:/Folder1/User/Folder2"));
-        sourceFileList.add(new SourceFileModel("SecretVideo.mkv", "Matroska", "15.1GB", "C:/Folder1/User/HCI"));
-        sourceTable.setItems(sourceFileList);
-        
-        CheckBox codec = new CheckBox("MPEG/AVC/H.264");
-        Label copyItem = makeNewLabel("Yes");
-        trackList.add(new TrackModel(codec, "Video", makeNewLabel("Yes"), "eng", "Blah", 
-                                     makeNewLabel("Yes"), makeNewLabel("Yes"),
-                                     "HCI Lecture.mp4", "C:/Folder1/User/Folder2"));
-        
-        codec = new CheckBox("MP3");
-        copyItem = makeNewLabel("Yes");
-        trackList.add(new TrackModel(codec, "Audio", copyItem, "eng", "Blah",
-                                     makeNewLabel("Yes"), makeNewLabel("No"),
-                                     "HCI Lecture.mp4", "C:/Folder1/User/Folder2"));
-        
-        trackTable.setItems(trackList);
     }
     
     @FXML
@@ -157,5 +142,16 @@ public class InputController extends AnchorPane
             label = new Label("No", image);
         }
         return label;
+    }
+    
+    public void setNewListData(List<SourceFileModel> sList, List<TrackModel> tList)
+    {
+        sourceFileList = sList;
+        sourceFileOList.setAll(sourceFileList);
+        sourceTable.setItems(sourceFileOList);
+        
+        trackList = tList;
+        trackOList.setAll(trackList);
+        trackTable.setItems(trackOList);
     }
 }

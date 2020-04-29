@@ -35,7 +35,7 @@ import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
- * @author Chraser
+ * @author Kay Men Yap 19257442
  */
 public class MainWindowController implements Initializable {
 

@@ -36,6 +36,7 @@
       </CheckBox>
       <Button layoutX="435.0" layoutY="621.0" mnemonicParsing="false" onAction="#handleOkAction" prefHeight="24.0" prefWidth="60.0" text="Ok" />
       <Button layoutX="518.0" layoutY="621.0" mnemonicParsing="false" onAction="#handleCancelAction" prefHeight="24.0" prefWidth="60.0" text="Cancel" />
-      <ComboBox fx:id="sourceFileDropDown" layoutX="24.0" layoutY="483.0" prefHeight="25.0" prefWidth="472.0" />
+      <ComboBox fx:id="sourceFileDropDown" editable="true" layoutX="24.0" layoutY="483.0" prefHeight="25.0" prefWidth="472.0" />
+      <AnchorPane layoutX="1.0" layoutY="412.0" prefHeight="136.0" prefWidth="591.0" />
    </children>
 </AnchorPane>

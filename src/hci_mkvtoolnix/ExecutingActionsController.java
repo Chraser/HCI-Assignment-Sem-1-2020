@@ -174,13 +174,44 @@ public class ExecutingActionsController extends AnchorPane
         int currentAction = comboBox.getSelectionModel().getSelectedIndex();
         actionList.remove(currentAction);
         comboBox.getItems().remove(currentAction);
-        comboBox.getSelectionModel().selectNext();
+        if(actionList.size() == 0)
+        {
+            addAction();
+        }
+        else
+        {
+            comboBox.getSelectionModel().selectNext();
+        }
     }
     
     @FXML
     private void changeType()
     {
         int currentType = typeList.getSelectionModel().getSelectedIndex();
+        int currentAction = comboBox.getSelectionModel().getSelectedIndex();
+        ActionModel action = actionList.get(currentAction);
+        action.setType(currentType);
+        if(action.getExtraInfo() != null)
+        {
+            if(action.getExtraInfo().length == 1)
+            {
+               audioTypePane.setVisible(false);
+               executeTypePane.setVisible(true);
+               commandLineField.setText(action.getExtraInfo()[0]);               
+            }
+            else
+            {
+                audioTypePane.setVisible(true);
+                executeTypePane.setVisible(false);
+                audioFileField.setText(action.getExtraInfo()[0]);
+                volumeField.setText(action.getExtraInfo()[1]);
+            }
+        }
+        else
+        {
+            audioTypePane.setVisible(false);
+            executeTypePane.setVisible(false);
+        }
     }
     
     @FXML

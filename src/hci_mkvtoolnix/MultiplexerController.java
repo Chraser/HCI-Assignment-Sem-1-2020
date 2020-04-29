@@ -18,8 +18,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
@@ -35,10 +39,13 @@ public class MultiplexerController extends AnchorPane {
 
     //also known as the multiplex setting list
     @FXML
-    private ComboBox projectList;
+    private ComboBox multiplexerJobComboBox;
     
     @FXML
     private Pane pane;
+    
+    @FXML
+    private TextField destinationFileField;
     
     private InputController inputController;
     
@@ -48,6 +55,8 @@ public class MultiplexerController extends AnchorPane {
     
     private Stage stage;
     
+    private List<MultiplexerJobModel> multiplexerJobList = new ArrayList<>();
+            
     public MultiplexerController()
     {
         FXMLLoader loader = new FXMLLoader(HCI_MKVToolNix.class.getResource("Multiplexer.fxml"));
@@ -71,9 +80,87 @@ public class MultiplexerController extends AnchorPane {
         inputController = new InputController();
         pane.getChildren().add(inputController);
         
-        projectList.getItems().addAll("Project1.mp4", "Project2.mp4", "Project3.mkv");
-        projectList.getSelectionModel().selectFirst();
+        MultiplexerJobModel model = new MultiplexerJobModel("NewMovie123.mkv");
         
+        model.addFile(new SourceFileModel("HCI Lecture.mp4", "MP4", "16.5GB", "C:/Folder1/User/Folder2"));
+        CheckBox codec = new CheckBox("MPEG/AVC/H.264");
+        Label copyItem = makeNewLabel("Yes");
+        model.addTrack(new TrackModel(codec, "Video", makeNewLabel("Yes"), "eng", "Blah", 
+                                      makeNewLabel("Yes"), makeNewLabel("Yes"),
+                                      "HCI Lecture.mp4", "C:/Folder1/User/Folder2"));
+        codec = new CheckBox("MP3");
+        copyItem = makeNewLabel("Yes");
+        model.addTrack(new TrackModel(codec, "Audio", makeNewLabel("Yes"), "eng", "Blah", 
+                                      makeNewLabel("Yes"), makeNewLabel("Yes"),
+                                      "HCI Lecture.mp4", "C:/Folder1/User/Folder2"));
+        multiplexerJobList.add(model);
+        multiplexerJobComboBox.getItems().add(model.getName());
+        
+        destinationFileField.setText(model.getName());
+        
+        model = new MultiplexerJobModel("CustomVideo.mp4");
+        
+        model.addFile(new SourceFileModel("SecretVideo.mkv", "MKV", "60.1GB", "C:/Folder1/User/"));
+        codec = new CheckBox("MPEG/H.265");
+        copyItem = makeNewLabel("Yes");
+        model.addTrack(new TrackModel(codec, "Video", makeNewLabel("Yes"), "eng", "Blah", 
+                                      makeNewLabel("Yes"), makeNewLabel("Yes"),
+                                      "SecretVideo.mkv", "C:/Folder1/User/"));
+        codec = new CheckBox("AAC");
+        copyItem = makeNewLabel("Yes");
+        model.addTrack(new TrackModel(codec, "Audio", makeNewLabel("Yes"), "eng", "Blah", 
+                                      makeNewLabel("Yes"), makeNewLabel("Yes"),
+                                      "SecretVideo.mkv", "C:/Folder1/User/"));
+        multiplexerJobList.add(model);
+        
+        multiplexerJobComboBox.getItems().add(model.getName());
+        multiplexerJobComboBox.getSelectionModel().selectFirst();
+        changeMultiplexerJob();
+    }
+    
+    private Label makeNewLabel(String s)
+    {
+        Label label;
+        ImageView image;
+        if(s.equals("Yes"))
+        {
+            image = new ImageView(new Image("resources/icons/green-tick.png"));
+            image.setFitWidth(20);
+            image.setFitHeight(20);
+            label = new Label("Yes", image);
+        }
+        else
+        {
+            image = new ImageView(new Image("resources/icons/dialog-cancel.png"));
+            image.setFitWidth(20);
+            image.setFitHeight(20);
+            label = new Label("No", image);
+        }
+        return label;
+    }
+    
+    @FXML
+    private void changeMultiplexerJob()
+    {
+        int index = multiplexerJobComboBox.getSelectionModel().getSelectedIndex();
+        MultiplexerJobModel model = multiplexerJobList.get(index);
+        inputController.setNewListData(model.getSourceFileList(), model.getTrackList());
+    }
+            
+    @FXML
+    private void updateDestinationFile()
+    {
+        String newName = destinationFileField.getText();
+        destinationFileField.setText(newName);
+        int index = multiplexerJobComboBox.getSelectionModel().getSelectedIndex();
+        multiplexerJobList.get(index).setName(newName);
+        ObservableList list = FXCollections.observableArrayList();
+        multiplexerJobComboBox.getItems().clear();
+        for(MultiplexerJobModel m : multiplexerJobList)
+        {
+            multiplexerJobComboBox.getItems().add(m.getName());
+        }
+        multiplexerJobComboBox.getSelectionModel().select(index);
     }
     
     @FXML
@@ -82,7 +169,20 @@ public class MultiplexerController extends AnchorPane {
         Stage stage = HCI_MKVToolNix.getStage();
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open File");
-        fileChooser.showOpenDialog(stage);
+        File file = fileChooser.showOpenDialog(stage);
+        if(file != null)
+        {
+            destinationFileField.setText(file.getName());
+            int index = multiplexerJobComboBox.getSelectionModel().getSelectedIndex();
+            multiplexerJobList.get(index).setName(file.getName());
+            ObservableList list = FXCollections.observableArrayList();
+            multiplexerJobComboBox.getItems().clear();
+            for(MultiplexerJobModel m : multiplexerJobList)
+            {
+                multiplexerJobComboBox.getItems().add(m.getName());
+            }
+            multiplexerJobComboBox.getSelectionModel().select(index);
+        }
     }
     
     @FXML
@@ -117,6 +217,7 @@ public class MultiplexerController extends AnchorPane {
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             controller.setStage(stage);
+            controller.setInputController(inputController);
             stage.setTitle("Adding or Appending files");
             stage.setScene(scene);
             stage.getIcons().add(new Image("resources/icons/mkvtoolnix-gui-big.png"));

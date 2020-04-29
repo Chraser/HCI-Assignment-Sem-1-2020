@@ -33,7 +33,7 @@ import javafx.stage.FileChooser;
 
 /**
  *
- * @author Chraser
+ * @author Kay Men Yap 19257442
  */
 public class StartMenuController implements Initializable {
         
@@ -139,7 +139,7 @@ public class StartMenuController implements Initializable {
                                "Job queue -  Shows the job queue\n" +
                                "Job output - Shows the list of jobs completed";
         Tooltip tooltip = new Tooltip(tooltipString);
-        tooltip.setStyle("-fx-font-size: 20; ");
+        tooltip.setStyle("-fx-font-size: 16; ");
         comboBox.setTooltip(tooltip);
     }
     
