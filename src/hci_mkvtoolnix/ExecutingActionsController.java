@@ -5,6 +5,7 @@
  */
 package hci_mkvtoolnix;
 
+import java.io.File;
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,6 +14,8 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 /**
  *
@@ -27,10 +30,15 @@ public class ExecutingActionsController extends AnchorPane
     private CheckBox configurationActive;
     
     @FXML
-    private TextField nameField;
+    private TextField audioFileField;
     
     @FXML
     private ComboBox typeList;
+    
+    @FXML
+    private AnchorPane configPane;
+    
+    private Stage stage;
     
     public ExecutingActionsController()
     {
@@ -45,10 +53,36 @@ public class ExecutingActionsController extends AnchorPane
         {
             throw new RuntimeException(e);
         }
+        typeList.getItems().addAll("");
+    }
+    
+    public void setStage(Stage stage)
+    {
+        this.stage = stage;
     }
     
     @FXML
-    private void changeType()
+    private void handleOpenAudioFile()
+    {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Audio File");
+        File file = fileChooser.showOpenDialog(stage);
+        if(file != null)
+        {
+            audioFileField.setText(file.getName());
+        }
+    }
+    
+    @FXML
+    private void handleOpenCLFile()
+    {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Command Line File");
+        fileChooser.showOpenDialog(stage);
+    }
+    
+    @FXML
+    private void changeAction()
     {
         int currentAction = actionList.getSelectionModel().getSelectedIndex();
     }

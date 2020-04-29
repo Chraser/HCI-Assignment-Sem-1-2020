@@ -99,9 +99,12 @@ public class StartMenuController implements Initializable {
     @FXML
     private void removeFile()
     {
-        int index = listView.getSelectionModel().getSelectedIndex();
-        fileNames.remove(index);
-        listView.setItems(fileNames);
+        if(listView.getSelectionModel().getSelectedItem() != null)
+        {
+            int index = listView.getSelectionModel().getSelectedIndex();
+            fileNames.remove(index);
+            listView.setItems(fileNames);
+        }
     }
     
     @Override
@@ -113,7 +116,7 @@ public class StartMenuController implements Initializable {
         Label chapterEditor = new Label("Chapter Editor", new ImageView(new Image("resources/icons/chapter-editor-small.png")));
         ImageView temp = new ImageView(new Image("resources/icons/job-queue-small.png"));
         Label jobQueue = new Label("Job Queue", temp);
-        Label jobOutput = new Label("Job Output", new ImageView(new Image("icons/job-output-small.png")));
+        Label jobOutput = new Label("Job Output", new ImageView(new Image("resources/icons/job-output-small.png")));
         comboBox.getItems().addAll(multiplexer, infoTool, headerEditor, chapterEditor, jobQueue, jobOutput);
         comboBox.setCellFactory(new Callback<ListView<Label>,ListCell<Label>>()
         {

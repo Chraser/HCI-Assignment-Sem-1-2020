@@ -5,7 +5,6 @@
  */
 package hci_mkvtoolnix;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +13,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -23,7 +21,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -68,6 +65,18 @@ public class InputController extends AnchorPane
     @FXML
     private TableColumn trackNameCol;
     
+    @FXML
+    private TableColumn defaultTrackCol;
+    
+    @FXML
+    private TableColumn forcedTrackCol;
+    
+    @FXML
+    private TableColumn fileCol;
+    
+    @FXML
+    private TableColumn fileDirectoryCol;
+    
     private ObservableList sourceFileList = FXCollections.observableArrayList();
     
     private ObservableList trackList = FXCollections.observableArrayList();
@@ -96,24 +105,26 @@ public class InputController extends AnchorPane
         copyCol.setCellValueFactory(new PropertyValueFactory<TrackModel, CheckBox>("CopyItem"));
         langCol.setCellValueFactory(new PropertyValueFactory<TrackModel, String>("Language"));
         trackNameCol.setCellValueFactory(new PropertyValueFactory<TrackModel, String>("TrackName"));
+        defaultTrackCol.setCellValueFactory(new PropertyValueFactory<TrackModel, Label>("DefaultTrack"));
+        forcedTrackCol.setCellValueFactory(new PropertyValueFactory<TrackModel, Label>("ForcedTrack"));
+        fileCol.setCellValueFactory(new PropertyValueFactory<TrackModel, String>("SourceFile"));
+        fileDirectoryCol.setCellValueFactory(new PropertyValueFactory<TrackModel, String>("Directory"));
         
         sourceFileList.add(new SourceFileModel("HCI Lecture.mp4", "Mp4", "60.1GB", "C:/Folder1/User/Folder2"));
         sourceFileList.add(new SourceFileModel("SecretVideo.mkv", "Matroska", "15.1GB", "C:/Folder1/User/HCI"));
         sourceTable.setItems(sourceFileList);
         
         CheckBox codec = new CheckBox("MPEG/AVC/H.264");
-        ImageView green_tick = new ImageView(new Image("icons/green-tick.png"));
-        green_tick.setFitWidth(20);
-        green_tick.setFitHeight(20);
-        Label copyItem = new Label("Yes", green_tick);
-        trackList.add(new TrackModel(codec, "Video", copyItem, "eng", "Blah"));
+        Label copyItem = makeNewLabel("Yes");
+        trackList.add(new TrackModel(codec, "Video", makeNewLabel("Yes"), "eng", "Blah", 
+                                     makeNewLabel("Yes"), makeNewLabel("Yes"),
+                                     "HCI Lecture.mp4", "C:/Folder1/User/Folder2"));
         
         codec = new CheckBox("MP3");
-        green_tick = new ImageView(new Image("icons/green-tick.png"));
-        green_tick.setFitWidth(20);
-        green_tick.setFitHeight(20);
-        copyItem = new Label("Yes", green_tick);
-        trackList.add(new TrackModel(codec, "Audio", copyItem, "eng", "Blah"));
+        copyItem = makeNewLabel("Yes");
+        trackList.add(new TrackModel(codec, "Audio", copyItem, "eng", "Blah",
+                                     makeNewLabel("Yes"), makeNewLabel("No"),
+                                     "HCI Lecture.mp4", "C:/Folder1/User/Folder2"));
         
         trackTable.setItems(trackList);
     }
@@ -127,5 +138,24 @@ public class InputController extends AnchorPane
         fileChooser.showOpenMultipleDialog(stage);
     }
     
-    
+    private Label makeNewLabel(String s)
+    {
+        Label label;
+        ImageView image;
+        if(s.equals("Yes"))
+        {
+            image = new ImageView(new Image("resources/icons/green-tick.png"));
+            image.setFitWidth(20);
+            image.setFitHeight(20);
+            label = new Label("Yes", image);
+        }
+        else
+        {
+            image = new ImageView(new Image("resources/icons/dialog-cancel.png"));
+            image.setFitWidth(20);
+            image.setFitHeight(20);
+            label = new Label("No", image);
+        }
+        return label;
+    }
 }

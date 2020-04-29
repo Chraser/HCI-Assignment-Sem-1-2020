@@ -4,6 +4,7 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -33,95 +34,124 @@
             <Font size="15.0" />
          </font>
       </CheckBox>
-      <Label layoutX="28.0" layoutY="134.0" text="Name:">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Label>
-      <TextField fx:id="nameField" layoutX="94.0" layoutY="132.0" prefHeight="25.0" prefWidth="246.0" />
-      <Label layoutX="28.0" layoutY="166.0" text="Type:">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="29.0" layoutY="202.0" text="When to execute:">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Label>
-      <ComboBox fx:id="typeList" layoutX="94.0" layoutY="164.0" onAction="#changeType" prefHeight="25.0" prefWidth="246.0" />
-      <CheckBox fx:id="afterSuccess" layoutX="173.0" layoutY="202.0" mnemonicParsing="false" text="After a job completes sucessfully or with warnings">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </CheckBox>
-      <CheckBox fx:id="afterSuccess1" layoutX="173.0" layoutY="232.0" mnemonicParsing="false" text="After a job exits with an error or the user aborts the job">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </CheckBox>
-      <CheckBox fx:id="afterSuccess2" layoutX="173.0" layoutY="263.0" mnemonicParsing="false" text="After the job queue has stopped">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </CheckBox>
-      <Button layoutX="173.0" layoutY="293.0" mnemonicParsing="false" text="Execute now">
-         <graphic>
-            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../resources/icons/job-output-big.png" />
-               </image>
-            </ImageView>
-         </graphic>
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Button>
-      <AnchorPane fx:id="executeTypePane" layoutX="-6.0" layoutY="338.0" prefHeight="308.0" prefWidth="1090.0" visible="false">
+      <AnchorPane fx:id="configPane" layoutY="120.0" prefHeight="524.0" prefWidth="1090.0">
          <children>
-            <Label layoutX="14.0" layoutY="4.0" text="Type-specific settings">
+            <Label layoutX="30.0" layoutY="11.0" text="Name:">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-         </children>
-      </AnchorPane>
-      <AnchorPane fx:id="audioTypePane" layoutY="338.0" prefHeight="308.0" prefWidth="1090.0">
-         <children>
-            <Label layoutX="34.0" layoutY="42.0" text="Audio file: ">
+            <TextField fx:id="nameField" layoutX="168.0" layoutY="9.0" prefHeight="25.0" prefWidth="246.0" />
+            <Label layoutX="30.0" layoutY="46.0" text="Type:">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label layoutX="14.0" layoutY="4.0" text="Type-specific settings">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <TextField fx:id="audioFileNameField" layoutX="120.0" layoutY="37.0" prefHeight="31.0" prefWidth="324.0" text="C:/Folder/Banana/noise.ogg">
+            <Label layoutX="30.0" layoutY="78.0" text="When to execute:">
                <font>
                   <Font size="15.0" />
                </font>
-            </TextField>
-            <Button layoutX="458.0" layoutY="38.0" mnemonicParsing="false" onAction="#handleOpenFile">
+            </Label>
+            <ComboBox fx:id="typeList" layoutX="168.0" layoutY="44.0" onAction="#changeType" prefHeight="25.0" prefWidth="246.0" />
+            <CheckBox fx:id="afterSuccess" layoutX="168.0" layoutY="78.0" mnemonicParsing="false" text="After a job completes sucessfully or with warnings">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </CheckBox>
+            <CheckBox fx:id="afterSuccess1" layoutX="168.0" layoutY="107.0" mnemonicParsing="false" text="After a job exits with an error or the user aborts the job">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </CheckBox>
+            <CheckBox fx:id="afterSuccess2" layoutX="168.0" layoutY="135.0" mnemonicParsing="false" text="After the job queue has stopped">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </CheckBox>
+            <Button layoutX="168.0" layoutY="165.0" mnemonicParsing="false" text="Execute now">
                <graphic>
-                  <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../icons/document-open.png" />
+                        <Image url="@../resources/icons/job-output-big.png" />
                      </image>
                   </ImageView>
                </graphic>
+               <font>
+                  <Font size="14.0" />
+               </font>
             </Button>
-            <Label layoutX="34.0" layoutY="81.0" text="Volume">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <TextField fx:id="volumeField" layoutX="120.0" layoutY="76.0" prefHeight="31.0" prefWidth="78.0" text="75%">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </TextField>
+            <AnchorPane fx:id="audioTypePane" layoutY="216.0" prefHeight="308.0" prefWidth="1090.0">
+               <children>
+                  <Label layoutX="34.0" layoutY="42.0" text="Audio file: ">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="14.0" layoutY="4.0" text="Type-specific settings">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="audioFileField" layoutX="120.0" layoutY="37.0" prefHeight="31.0" prefWidth="324.0" text="C:/Folder/Banana/noise.ogg">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
+                  <Button layoutX="458.0" layoutY="38.0" mnemonicParsing="false" onAction="#handleOpenAudioFile">
+                     <graphic>
+                        <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/icons/document-open.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Label layoutX="34.0" layoutY="81.0" text="Volume">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="volumeField" layoutX="120.0" layoutY="76.0" prefHeight="31.0" prefWidth="78.0" text="75%">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="executeTypePane" layoutY="216.0" prefHeight="308.0" prefWidth="1090.0" visible="false">
+               <children>
+                  <Label layoutX="14.0" layoutY="4.0" text="Type-specific settings">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="34.0" layoutY="42.0" text="Command line:">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField layoutX="149.0" layoutY="40.0" prefHeight="25.0" prefWidth="786.0" />
+                  <Button layoutX="941.0" layoutY="41.0" mnemonicParsing="false" onAction="#handleOpenCLFile">
+                     <graphic>
+                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/icons/document-open.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button layoutX="980.0" layoutY="40.0" mnemonicParsing="false" text="Add variable">
+                     <graphic>
+                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/icons/plus-icon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <TextArea layoutX="30.0" layoutY="78.0" prefHeight="189.0" prefWidth="1052.0" text=" Usage and examples:&#10;  - The command line here uses Unix-style shell escaping via the backslash character even on Windows. This means that either backslashes must be doubled or the whole argument must be&#10;     enclosed in single quotes. Note that on Windows forward slashes can be used instead of backslashes in path names, too. See below for examples. &#10;  - Always use full path names even if the application is located in the same directory as the GUI. &#10;  - Start file types other than executable files via cmd.exe. See below for examples. &#10; Examples:&#10;  - Play a WAV file with the default application:  C:\\windows\\system32\\cmd.exe /c C:\\temp\\signal.wav  or  C:/windows/system32/cmd.exe /c C:/temp/signal.wav  or  &#10;    'C:\windows\system32\cmd.exe' /c 'C:\temp\signal.wav'  &#10;  - Shut down the system in one minute:  'c:\windows\system32\shutdown.exe' /s /t 60  &#10;  - Open the multiplexed file with a player: 'C:\Program Files (x86)\VideoLAN\VLC\vlc.exe' '&lt;MTX_DESTINATION_FILE_NAME&gt;'  " />
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
    </children>

@@ -39,7 +39,7 @@
          <graphic>
             <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../icons/document-open.png" />
+                  <Image url="@../resources/icons/document-open.png" />
                </image>
             </ImageView>
          </graphic>
@@ -48,7 +48,7 @@
          <graphic>
             <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../icons/minus-icon.png" />
+                  <Image url="@../resources/icons/minus-icon.png" />
                </image>
             </ImageView>
          </graphic>

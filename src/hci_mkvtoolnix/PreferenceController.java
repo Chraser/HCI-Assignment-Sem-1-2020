@@ -52,6 +52,8 @@ public class PreferenceController implements Initializable {
     public void setStage(Stage stage)
     {
         this.stage = stage;
+        ExecutingActionsController eac = (ExecutingActionsController)paneMap.get("- Executing actions");
+        eac.setStage(stage);
     }
     
     /**

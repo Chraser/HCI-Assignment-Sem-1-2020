@@ -65,10 +65,10 @@
                               <TableColumn fx:id="copyCol" prefWidth="77.0" text="Copy Item" />
                               <TableColumn fx:id="langCol" prefWidth="63.0" text="Language" />
                               <TableColumn fx:id="trackNameCol" prefWidth="116.0" text="Name" />
-                              <TableColumn prefWidth="148.0" text="Default track in output" />
-                              <TableColumn prefWidth="87.0" text="Forced track" />
-                              <TableColumn prefWidth="173.0" text="Source file" />
-                              <TableColumn prefWidth="177.0" text="Source file's directory" />
+                              <TableColumn fx:id="defaultTrackCol" prefWidth="148.0" text="Default track in output" />
+                              <TableColumn fx:id="forcedTrackCol" prefWidth="87.0" text="Forced track" />
+                              <TableColumn fx:id="fileCol" prefWidth="173.0" text="Source file" />
+                              <TableColumn fx:id="fileDirectoryCol" prefWidth="177.0" text="Source file's directory" />
                             </columns>
                           </TableView>
                      </children>
