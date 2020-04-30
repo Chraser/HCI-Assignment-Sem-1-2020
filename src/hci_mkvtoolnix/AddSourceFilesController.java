@@ -52,15 +52,8 @@ public class AddSourceFilesController implements Initializable {
     }
     
     @FXML
-    private void handleOpenFile()
-    {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Open File");
-        fileChooser.showOpenDialog(stage);
-    }
-    
-    @FXML
     private void handleOkAction(ActionEvent event){
+        ic.addRandomData();
         stage.close();
     }
     

@@ -84,12 +84,11 @@ public class MultiplexerController extends AnchorPane {
         
         model.addFile(new SourceFileModel("HCI Lecture.mp4", "MP4", "16.5GB", "C:/Folder1/User/Folder2"));
         CheckBox codec = new CheckBox("MPEG/AVC/H.264");
-        Label copyItem = makeNewLabel("Yes");
         model.addTrack(new TrackModel(codec, "Video", makeNewLabel("Yes"), "eng", "Blah", 
                                       makeNewLabel("Yes"), makeNewLabel("Yes"),
                                       "HCI Lecture.mp4", "C:/Folder1/User/Folder2"));
         codec = new CheckBox("MP3");
-        copyItem = makeNewLabel("Yes");
+        codec.setSelected(true);
         model.addTrack(new TrackModel(codec, "Audio", makeNewLabel("Yes"), "eng", "Blah", 
                                       makeNewLabel("Yes"), makeNewLabel("Yes"),
                                       "HCI Lecture.mp4", "C:/Folder1/User/Folder2"));
@@ -102,12 +101,11 @@ public class MultiplexerController extends AnchorPane {
         
         model.addFile(new SourceFileModel("SecretVideo.mkv", "MKV", "60.1GB", "C:/Folder1/User/"));
         codec = new CheckBox("MPEG/H.265");
-        copyItem = makeNewLabel("Yes");
+        codec.setSelected(true);
         model.addTrack(new TrackModel(codec, "Video", makeNewLabel("Yes"), "eng", "Blah", 
                                       makeNewLabel("Yes"), makeNewLabel("Yes"),
                                       "SecretVideo.mkv", "C:/Folder1/User/"));
         codec = new CheckBox("AAC");
-        copyItem = makeNewLabel("Yes");
         model.addTrack(new TrackModel(codec, "Audio", makeNewLabel("Yes"), "eng", "Blah", 
                                       makeNewLabel("Yes"), makeNewLabel("Yes"),
                                       "SecretVideo.mkv", "C:/Folder1/User/"));

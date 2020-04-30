@@ -5,9 +5,11 @@
  */
 package hci_mkvtoolnix;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -84,6 +86,10 @@ public class InputController extends AnchorPane
     
     private List<TrackModel> trackList = new ArrayList<>();
     
+    private List<SourceFileModel> hardCodedFiles = new ArrayList<>();
+    
+    private List<TrackModel> hardCodedTracks = new ArrayList<>();
+    
     public InputController()
     {
         FXMLLoader loader = new FXMLLoader(HCI_MKVToolNix.class.getResource("Input.fxml"));
@@ -112,6 +118,18 @@ public class InputController extends AnchorPane
         forcedTrackCol.setCellValueFactory(new PropertyValueFactory<TrackModel, Label>("ForcedTrack"));
         fileCol.setCellValueFactory(new PropertyValueFactory<TrackModel, String>("SourceFile"));
         fileDirectoryCol.setCellValueFactory(new PropertyValueFactory<TrackModel, String>("Directory"));
+        
+        
+        hardCodedFiles.add(new SourceFileModel("LegendaryFile.mp4","Not MP4","420MB","C:/Movies/Clips"));
+        hardCodedFiles.add(new SourceFileModel("BadFile.mkv","mkv","100KB","C:/Narnia/Nowhere"));
+        hardCodedFiles.add(new SourceFileModel("Meme.mp4","MP4","20GB","D:/Stash"));
+        
+        hardCodedTracks.add(makeNewTrack("MPEG", "Video", "Yes", "spa", "Espanol", "Yes","Yes", "LegendaryFile.mp4", "C:/Movies/Clips"));
+        hardCodedTracks.add(makeNewTrack("AAC", "Audio", "Yes", "spa", "Espanol", "Yes","Yes", "LegendaryFile.mp4", "C:/Movies/Clips"));
+        hardCodedTracks.add(makeNewTrack("H.264", "Video", "Yes", "und", "und", "Yes","Yes", "BadFile.mkv", "C:/Videos"));
+        hardCodedTracks.add(makeNewTrack("MP3", "Audio", "Yes", "rus", "Russian", "Yes","Yes", "BadFile.mkv", "C:/Videos"));
+        hardCodedTracks.add(makeNewTrack("H.265", "Video", "Yes", "eng", "English", "No","No", "Meme.mp4", "C:/Banana"));
+        hardCodedTracks.add(makeNewTrack("OGG", "Audio", "Yes", "eng", "English", "No","Yes", "Meme.mp4", "C:/Banana"));
     }
     
     @FXML
@@ -120,7 +138,27 @@ public class InputController extends AnchorPane
         Stage stage = HCI_MKVToolNix.getStage();
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open File");
-        fileChooser.showOpenMultipleDialog(stage);
+        List<File> temp = fileChooser.showOpenMultipleDialog(stage);
+        if(temp.size() > 0)
+        {
+            addRandomData();
+        }
+    }
+    
+    @FXML
+    private void removeSourceFile(ActionEvent event)
+    {
+        if(sourceTable.getSelectionModel().getSelectedItem() != null)
+        {
+            int index = sourceTable.getSelectionModel().getSelectedIndex();
+            sourceFileList.remove(index);
+            sourceFileOList.setAll(sourceFileList);
+            sourceTable.setItems(sourceFileOList);
+            trackList.remove(index*2);
+            trackList.remove(index*2);
+            trackOList.setAll(trackList);
+            trackTable.setItems(trackOList);
+        }
     }
     
     private Label makeNewLabel(String s)
@@ -153,5 +191,43 @@ public class InputController extends AnchorPane
         trackList = tList;
         trackOList.setAll(trackList);
         trackTable.setItems(trackOList);
+    }
+    
+    
+    
+    public void addRandomData()
+    {
+        Random random = new Random();
+        int index = random.nextInt(2);
+        switch(index)
+        {
+            case 0:
+                sourceFileList.add(hardCodedFiles.get(index));
+                trackList.add(hardCodedTracks.get(index));
+                trackList.add(hardCodedTracks.get(index+1));
+                break;
+            case 1:
+                sourceFileList.add(hardCodedFiles.get(index+1));
+                trackList.add(hardCodedTracks.get(index+2));
+                trackList.add(hardCodedTracks.get(index+3));
+                break;
+            case 2:
+                sourceFileList.add(hardCodedFiles.get(index+2));
+                trackList.add(hardCodedTracks.get(index+4));
+                trackList.add(hardCodedTracks.get(index+5));
+        }
+        sourceFileOList.setAll(sourceFileList);
+        sourceTable.setItems(sourceFileOList);
+        trackOList.setAll(trackList);
+        trackTable.setItems(trackOList);
+    }
+    
+    private TrackModel makeNewTrack(String codecString, String type, String copy, String lang, String name, 
+                                    String defaultT, String forcedT, String file, String directory)
+    {
+        CheckBox codec = new CheckBox("H.265");
+        return new TrackModel(codec, type, makeNewLabel(copy), lang, name, 
+                              makeNewLabel(defaultT), makeNewLabel(forcedT),
+                              file, directory);
     }
 }
