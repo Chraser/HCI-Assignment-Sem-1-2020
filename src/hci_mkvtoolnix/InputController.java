@@ -139,7 +139,7 @@ public class InputController extends AnchorPane
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open File");
         List<File> temp = fileChooser.showOpenMultipleDialog(stage);
-        if(temp.size() > 0)
+        if(temp != null)
         {
             addRandomData();
         }

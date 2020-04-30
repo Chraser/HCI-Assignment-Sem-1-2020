@@ -144,6 +144,35 @@ public class MultiplexerController extends AnchorPane {
         MultiplexerJobModel model = multiplexerJobList.get(index);
         inputController.setNewListData(model.getSourceFileList(), model.getTrackList());
     }
+    
+    @FXML
+    private void addMultiplexerJob()
+    {
+        MultiplexerJobModel model = MultiplexerJobModel.makeNewJob();
+        multiplexerJobList.add(model);
+        multiplexerJobComboBox.getItems().add(model.getName());
+        inputController.setNewListData(model.getSourceFileList(), model.getTrackList());
+        multiplexerJobComboBox.getSelectionModel().selectLast();
+    }
+    
+    @FXML
+    private void removeMultiplexerJob()
+    {
+        int index = multiplexerJobComboBox.getSelectionModel().getSelectedIndex();
+        multiplexerJobList.remove(index);
+        multiplexerJobComboBox.getItems().remove(index);
+        if(multiplexerJobList.size() == 0)
+        {
+            addMultiplexerJob();
+        }
+        else
+        {
+            multiplexerJobComboBox.getSelectionModel().selectNext();
+            index = multiplexerJobComboBox.getSelectionModel().getSelectedIndex();
+            MultiplexerJobModel model = multiplexerJobList.get(index);
+            inputController.setNewListData(model.getSourceFileList(), model.getTrackList());
+        }        
+    }
             
     @FXML
     private void updateDestinationFile()
