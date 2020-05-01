@@ -153,7 +153,6 @@ public class InputController extends AnchorPane
     private ComboBox characterSetComboBox;
     
     //miscellaneous properties
-            
     @FXML
     private ComboBox indexingComboBox;
     
