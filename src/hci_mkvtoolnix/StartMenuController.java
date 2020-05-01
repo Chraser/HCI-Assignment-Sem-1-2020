@@ -69,7 +69,8 @@ public class StartMenuController implements Initializable {
         }
         catch(IOException e)
         {
-            throw new RuntimeException(e.getMessage());
+            e.printStackTrace();
+            //throw new RuntimeException(e.getMessage());
         }
     }
     

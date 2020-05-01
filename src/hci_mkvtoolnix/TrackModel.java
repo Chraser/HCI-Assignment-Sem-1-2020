@@ -8,6 +8,8 @@ package hci_mkvtoolnix;
 
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 /**
  *
@@ -115,5 +117,35 @@ public class TrackModel
 
     public void setDirectory(String directory) {
         this.directory = directory;
+    }
+    
+    public TrackModel clone()
+    {
+        CheckBox codecCpy = new CheckBox(codec.getText());
+        codecCpy.setSelected(codec.isSelected());
+        return new TrackModel(codec, trackType, makeNewLabel(copyItem.getText()), language,
+                              trackName, makeNewLabel(defaultTrack.getText()), 
+                              makeNewLabel(forcedTrack.getText()), sourceFile, directory);
+    }
+    
+    private Label makeNewLabel(String s)
+    {
+        Label label;
+        ImageView image;
+        if(s.equals("Yes"))
+        {
+            image = new ImageView(new Image("resources/icons/green-tick.png"));
+            image.setFitWidth(20);
+            image.setFitHeight(20);
+            label = new Label("Yes", image);
+        }
+        else
+        {
+            image = new ImageView(new Image("resources/icons/dialog-cancel.png"));
+            image.setFitWidth(20);
+            image.setFitHeight(20);
+            label = new Label("No", image);
+        }
+        return label;
     }
 }

@@ -111,16 +111,16 @@ public class PreferenceController implements Initializable {
         
         //add the listener so that each tree item can have click interactions
         preferenceTree.getSelectionModel().selectedItemProperty()
-                .addListener((ObservableValue<? extends TreeItem<String>> obs, TreeItem<String> oldValue, TreeItem<String> newValue) ->
-                {
-                    Pane pane;
-                    pane = paneMap.get(newValue.getValue());
-                    if(pane != null)
-                    {
-                        preferencePane.getChildren().clear();
-                        preferencePane.getChildren().add(pane);
-                    }
-                });
+                      .addListener((ObservableValue<? extends TreeItem<String>> obs, TreeItem<String> oldValue, TreeItem<String> newValue) ->
+                      {
+                      Pane pane;
+                      pane = paneMap.get(newValue.getValue());
+                      if(pane != null)
+                      {
+                          preferencePane.getChildren().clear();
+                          preferencePane.getChildren().add(pane);
+                      }
+                      });
         
         preferencePane.getChildren().add(paneMap.get("GUI"));
     }    

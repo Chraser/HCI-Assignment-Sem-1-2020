@@ -6,6 +6,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
@@ -91,37 +92,32 @@
                      <font>
                         <Font size="14.0" />
                      </font></Label>
-                  <Accordion layoutX="4.0" layoutY="29.0" prefHeight="458.0" prefWidth="484.0">
+                  <Accordion fx:id="propertiesAccordion" layoutX="4.0" layoutY="29.0" prefHeight="458.0" prefWidth="484.0">
                     <panes>
                       <TitledPane animated="false" text="General options">
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
                                     <Label layoutX="10.0" layoutY="6.0" text="Copy this item:" />
-                                    <CheckBox layoutX="447.0" layoutY="2.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="30.0">
+                                    <CheckBox fx:id="copyCheckBox" layoutX="447.0" layoutY="2.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="30.0">
                                        <font>
                                           <Font size="15.0" />
                                        </font></CheckBox>
                                     <Label layoutX="10.0" layoutY="36.0" text="Track name:" />
-                                    <Label layoutX="10.0" layoutY="70.0" text="Language" />
-                                    <ComboBox editable="true" layoutX="264.0" layoutY="32.0" prefHeight="25.0" prefWidth="204.0" />
-                                    <ComboBox layoutX="264.0" layoutY="66.0" prefHeight="25.0" prefWidth="203.0" />
-                                    <Label layoutX="9.0" layoutY="100.0" text="&quot;Default Track&quot; flag:" />
-                                    <CheckBox layoutX="447.0" layoutY="96.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="30.0">
-                                       <font>
-                                          <Font size="15.0" />
-                                       </font>
-                                    </CheckBox>
+                                    <Label layoutX="10.0" layoutY="69.0" text="Language:" />
+                                    <ComboBox fx:id="nameComboBox" editable="true" layoutX="168.0" layoutY="32.0" prefHeight="25.0" prefWidth="302.0" />
+                                    <ComboBox fx:id="langComboBox" layoutX="168.0" layoutY="65.0" prefHeight="25.0" prefWidth="302.0" />
+                                    <Label layoutX="9.0" layoutY="101.0" text="&quot;Default Track&quot; flag:" />
                                     <Label layoutX="8.0" layoutY="131.0" text="&quot;Forced Track&quot; flag:" />
-                                    <CheckBox layoutX="447.0" layoutY="127.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="30.0">
+                                    <CheckBox fx:id="forcedCheckBox" layoutX="447.0" layoutY="127.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="30.0">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
                                     </CheckBox>
-                                    <Label layoutX="8.0" layoutY="163.0" text="Compression: " />
+                                    <Label layoutX="8.0" layoutY="161.0" text="Compression: " />
                                     <Label layoutX="8.0" layoutY="194.0" text="Tags:" />
-                                    <TextField layoutX="167.0" layoutY="190.0" prefHeight="25.0" prefWidth="262.0" />
-                                    <Button layoutX="437.0" layoutY="190.0" mnemonicParsing="false">
+                                    <TextField fx:id="tagsField" layoutX="168.0" layoutY="190.0" prefHeight="25.0" prefWidth="262.0" />
+                                    <Button layoutX="437.0" layoutY="190.0" mnemonicParsing="false" onAction="#openTagsFile">
                                        <graphic>
                                           <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
@@ -130,33 +126,93 @@
                                           </ImageView>
                                        </graphic>
                                     </Button>
-                                    <ComboBox layoutX="168.0" layoutY="159.0" prefHeight="25.0" prefWidth="302.0" />
+                                    <ComboBox fx:id="compressionComboBox" layoutX="168.0" layoutY="157.0" prefHeight="25.0" prefWidth="302.0" />
+                                    <ComboBox fx:id="defaultComboBox" layoutX="168.0" layoutY="98.0" prefHeight="25.0" prefWidth="302.0" />
                                  </children></AnchorPane>
                         </content>
                       </TitledPane>
                       <TitledPane animated="false" text="Timestamps and default duration">
                         <content>
-                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <CheckBox layoutX="10.0" layoutY="132.0" mnemonicParsing="false" text="Fix bitstream timing info" />
+                                    <Label layoutX="10.0" layoutY="9.0" text="Delay (in ms):" />
+                                    <Label layoutX="10.0" layoutY="39.0" text="Stretch by:" />
+                                    <Label layoutX="10.0" layoutY="70.0" text="Defalut duration/FPS:" />
+                                    <Label layoutX="10.0" layoutY="100.0" text="Timestamp file:" />
+                                    <TextField fx:id="timestampField" layoutX="168.0" layoutY="98.0" prefHeight="25.0" prefWidth="262.0" />
+                                    <Button layoutX="437.0" layoutY="98.0" mnemonicParsing="false" onAction="#openTimestampFile">
+                                       <graphic>
+                                          <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../resources/icons/document-open.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                    <ComboBox fx:id="durationComboBox" editable="true" layoutX="168.0" layoutY="66.0" prefHeight="25.0" prefWidth="302.0" />
+                                    <TextField fx:id="tagsField3" layoutX="168.0" layoutY="5.0" prefHeight="25.0" prefWidth="308.0" />
+                                    <TextField fx:id="tagsField31" layoutX="168.0" layoutY="35.0" prefHeight="25.0" prefWidth="308.0" />
+                                 </children></AnchorPane>
                         </content>
                       </TitledPane>
                       <TitledPane animated="false" text="Video properties">
                         <content>
-                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                          <AnchorPane fx:id="videoPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <RadioButton fx:id="aspectRatioRadio" layoutX="10.0" layoutY="11.0" mnemonicParsing="false" text="Set aspect ratio:" />
+                                    <RadioButton fx:id="displayRadio" layoutX="10.0" layoutY="44.0" mnemonicParsing="false" text="Display width/height:" />
+                                    <ComboBox fx:id="aspectRatioComboBox" editable="true" layoutX="168.0" layoutY="7.0" prefHeight="25.0" prefWidth="302.0" />
+                                    <Label layoutX="10.0" layoutY="76.0" text="Cropping:" />
+                                    <Label layoutX="10.0" layoutY="107.0" text="Stereoscopy:" />
+                                    <Label layoutX="10.0" layoutY="137.0" text="Timestamp file:" />
+                                    <TextField layoutX="167.0" layoutY="40.0" prefHeight="25.0" prefWidth="138.0" />
+                                    <TextField layoutX="332.0" layoutY="40.0" prefHeight="25.0" prefWidth="138.0" />
+                                    <Label layoutX="314.0" layoutY="44.0" text="x" />
+                                    <TextField layoutX="168.0" layoutY="72.0" prefHeight="25.0" prefWidth="302.0" />
+                                    <ComboBox fx:id="stereoscopyComboBox" layoutX="168.0" layoutY="103.0" prefHeight="25.0" prefWidth="302.0" />
+                                    <ComboBox fx:id="naluComboBox" layoutX="168.0" layoutY="133.0" prefHeight="25.0" prefWidth="302.0" />
+                                 </children></AnchorPane>
                         </content>
                       </TitledPane>
                         <TitledPane animated="false" text="Audio properties">
                            <content>
-                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                              <AnchorPane fx:id="audioPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <Label layoutX="10.0" layoutY="14.0" text="AAC is SBR/HE-AAC/AAC+:" />
+                                    <ComboBox fx:id="aacComboBox" layoutX="168.0" layoutY="9.0" prefHeight="25.0" prefWidth="302.0" />
+                                    <CheckBox layoutX="10.0" layoutY="44.0" mnemonicParsing="false" text="Reduce to core" />
+                                    <CheckBox layoutX="10.0" layoutY="74.0" mnemonicParsing="false" text="Remove dialog normalization gain" />
+                                 </children></AnchorPane>
                            </content>
                         </TitledPane>
                         <TitledPane animated="false" text="Subtitle and chapter properties">
                            <content>
-                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                              <AnchorPane fx:id="subtitlePane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <Label layoutX="14.0" layoutY="18.0" text="Character set:" />
+                                    <Button layoutX="441.0" layoutY="12.0" mnemonicParsing="false" onAction="#openTagsFile">
+                                       <graphic>
+                                          <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../resources/icons/character-set.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                    <ComboBox fx:id="characterSetComboBox" layoutX="168.0" layoutY="14.0" prefHeight="25.0" prefWidth="265.0" />
+                                 </children></AnchorPane>
                            </content>
                         </TitledPane>
                         <TitledPane animated="false" text="Miscellaneous">
                            <content>
-                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <Label layoutX="8.0" layoutY="11.0" text="Indexing (cues):" />
+                                    <Label layoutX="8.0" layoutY="45.0" text="Additional options:" />
+                                    <ComboBox fx:id="indexingComboBox" layoutX="166.0" layoutY="7.0" prefHeight="25.0" prefWidth="302.0" />
+                                    <TextField layoutX="166.0" layoutY="41.0" prefHeight="25.0" prefWidth="302.0" />
+                                 </children></AnchorPane>
                            </content>
                         </TitledPane>
                     </panes>
