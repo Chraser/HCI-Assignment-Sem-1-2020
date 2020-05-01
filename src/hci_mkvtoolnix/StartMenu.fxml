@@ -29,7 +29,7 @@
          <font>
             <Font size="20.0" />
          </font></Label>
-      <CheckBox layoutX="81.0" layoutY="687.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="556.0" text="Don't show start menu again. Start at selected tool from now on.">
+      <CheckBox layoutX="81.0" layoutY="687.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="640.0" text="Don't show start menu again. Start at selected tool from now on.">
          <font>
             <Font size="18.0" />
          </font>
