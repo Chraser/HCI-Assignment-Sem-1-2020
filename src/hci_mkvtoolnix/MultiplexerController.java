@@ -139,7 +139,7 @@ public class MultiplexerController extends AnchorPane {
         int index = multiplexerJobComboBox.getSelectionModel().getSelectedIndex();
         
         //ensures no array index out of bounds operation to the List
-        if(index != multiplexerJobList.size())
+        if(index < multiplexerJobList.size())
         {
             MultiplexerJobModel model = multiplexerJobList.get(index);
             inputController.setNewListData(model.getSourceFileList(), model.getTrackList());
@@ -161,7 +161,6 @@ public class MultiplexerController extends AnchorPane {
     {
         int index = multiplexerJobComboBox.getSelectionModel().getSelectedIndex();
         multiplexerJobList.remove(index);
-        System.err.println("asd");
         if(multiplexerJobList.size() == 0)
         {
             addMultiplexerJob();
