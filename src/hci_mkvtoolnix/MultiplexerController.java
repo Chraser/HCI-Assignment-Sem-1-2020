@@ -137,8 +137,13 @@ public class MultiplexerController extends AnchorPane {
     private void changeMultiplexerJob()
     {
         int index = multiplexerJobComboBox.getSelectionModel().getSelectedIndex();
-        MultiplexerJobModel model = multiplexerJobList.get(index);
-        inputController.setNewListData(model.getSourceFileList(), model.getTrackList());
+        
+        //ensures no array index out of bounds operation to the List
+        if(index != multiplexerJobList.size())
+        {
+            MultiplexerJobModel model = multiplexerJobList.get(index);
+            inputController.setNewListData(model.getSourceFileList(), model.getTrackList());
+        }
     }
     
     @FXML
@@ -156,14 +161,16 @@ public class MultiplexerController extends AnchorPane {
     {
         int index = multiplexerJobComboBox.getSelectionModel().getSelectedIndex();
         multiplexerJobList.remove(index);
-        multiplexerJobComboBox.getItems().remove(index);
+        System.err.println("asd");
         if(multiplexerJobList.size() == 0)
         {
             addMultiplexerJob();
+            multiplexerJobComboBox.getItems().remove(index);
         }
         else
         {
             multiplexerJobComboBox.getSelectionModel().selectNext();
+            multiplexerJobComboBox.getItems().remove(index);
             index = multiplexerJobComboBox.getSelectionModel().getSelectedIndex();
             MultiplexerJobModel model = multiplexerJobList.get(index);
             inputController.setNewListData(model.getSourceFileList(), model.getTrackList());

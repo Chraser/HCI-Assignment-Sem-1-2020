@@ -18,6 +18,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -36,6 +37,9 @@ public class AddSourceFilesController implements Initializable {
     
     @FXML
     private ListView fileListView;
+    
+    @FXML
+    private AnchorPane appendPane;
     
     private Stage stage = null;
     
@@ -62,6 +66,19 @@ public class AddSourceFilesController implements Initializable {
         stage.close();
     }
     
+    @FXML
+    private void changeOption(ActionEvent event){
+        int index = optionsDropDown.getSelectionModel().getSelectedIndex();
+        if(index == 3 || index == 4)
+        {
+            appendPane.setDisable(false);
+        }
+        else
+        {
+            appendPane.setDisable(true);
+        }
+    }
+    
     /**
      * Initializes the controller class.
      */
@@ -75,6 +92,7 @@ public class AddSourceFilesController implements Initializable {
         String option5 = "Add as additional parts to an existing source file";
         optionsDropDown.getItems().addAll(option1, option2, option3, option4, option5);
         optionsDropDown.getSelectionModel().selectFirst();
+        appendPane.setDisable(true);
         
         sourceFileDropDown.getItems().addAll("File1.mp4","File2.mp4");
         sourceFileDropDown.getSelectionModel().selectFirst();

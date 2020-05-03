@@ -93,9 +93,9 @@ public class PredefinedValuesController extends AnchorPane
     @FXML
     private void handleRemoveAction(ActionEvent event)
     {
-        if(categoryList.getSelectionModel().getSelectedItem() != null)
+        int currentCategory = categoryList.getSelectionModel().getSelectedIndex();
+        if(listView.getSelectionModel().getSelectedItem() != null)
         {
-            int currentCategory = categoryList.getSelectionModel().getSelectedIndex();
             int valueIndex = listView.getSelectionModel().getSelectedIndex();
             listView.getSelectionModel().clearSelection();
             valueList.get(currentCategory).remove(valueIndex);
