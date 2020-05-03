@@ -121,7 +121,11 @@ public class ExecutingActionsController extends AnchorPane
     {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Command Line File");
-        fileChooser.showOpenDialog(stage);
+        File file = fileChooser.showOpenDialog(stage);
+        if(file != null)
+        {
+            commandLineField.setText(file.getName());
+        }
     }
     
     @FXML
